@@ -283,6 +283,31 @@
   .contact-list .k{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--mist); width:88px; flex:none; padding-top:2px;}
   .contact-list .v{color:var(--ink); font-size:.98rem;}
   .contact-list a{ text-decoration-color:var(--blaze); }
+  .enquiry-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:26px; box-shadow:var(--shadow);
+    margin-top:32px;
+  }
+  .enquiry-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; }
+  .field{ display:flex; flex-direction:column; gap:6px; }
+  .field.full{ grid-column:1/-1; }
+  .field label{
+    font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--mist);
+  }
+  .field input, .field select, .field textarea{
+    font:inherit; font-size:.95rem; padding:10px 12px; border:1px solid var(--line); border-radius:4px;
+    background:var(--paper); color:var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:2px solid var(--blaze); outline-offset:1px; border-color:var(--blaze);
+  }
+  .field textarea{ min-height:96px; resize:vertical; font-family:inherit; }
+  .hp-field{ position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+  .form-actions{ display:flex; align-items:center; gap:16px; margin-top:22px; flex-wrap:wrap; }
+  .form-status{ font-family:'IBM Plex Mono',monospace; font-size:.8rem; }
+  .form-status.success{ color:var(--ice); }
+  .form-status.error{ color:var(--blaze); }
+  .btn[disabled]{ opacity:.6; cursor:not-allowed; }
+
   .map-frame{
     border:1px solid var(--line); border-radius:6px; padding:20px; background:var(--surface); box-shadow:var(--shadow);
     display:flex; flex-direction:column; gap:14px;
@@ -661,6 +686,60 @@
         <a class="btn btn-primary" style="align-self:flex-start; margin-top:4px;" href="https://www.instagram.com/trekwith_g/" target="_blank" rel="noopener">Message on Instagram</a>
       </div>
     </div>
+
+    <div class="enquiry-card">
+      <div class="eyebrow">Prefer a form?</div>
+      <h2 style="font-size:1.4rem; margin-top:6px;">Send an enquiry</h2>
+      <p style="margin-top:8px;">Fill this in and it lands directly in our booking queue &mdash; we'll follow up over email or WhatsApp, whichever you leave.</p>
+      <form id="enquiry-form" novalidate>
+        <div class="enquiry-grid">
+          <div class="field">
+            <label for="enq-name">Full name *</label>
+            <input type="text" id="enq-name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="enq-phone">Phone / WhatsApp *</label>
+            <input type="tel" id="enq-phone" name="phone" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="enq-email">Email</label>
+            <input type="email" id="enq-email" name="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="enq-trek">Trek you're interested in</label>
+            <select id="enq-trek" name="trek">
+              <option value="">Not sure yet</option>
+              <option value="Kedarkantha">Kedarkantha</option>
+              <option value="Hampta Pass">Hampta Pass</option>
+              <option value="Valley of Flowers">Valley of Flowers</option>
+              <option value="Chadar">Chadar</option>
+              <option value="Brahmatal">Brahmatal</option>
+              <option value="Custom / build your own">Custom / build your own</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="enq-month">Preferred dates</label>
+            <input type="text" id="enq-month" name="preferred_month" placeholder="e.g. March 2027">
+          </div>
+          <div class="field">
+            <label for="enq-group">Group size</label>
+            <input type="number" id="enq-group" name="group_size" min="1" placeholder="e.g. 4">
+          </div>
+          <div class="field full">
+            <label for="enq-message">Anything else we should know?</label>
+            <textarea id="enq-message" name="message" placeholder="Fitness level, prior treks, questions..."></textarea>
+          </div>
+          <div class="hp-field" aria-hidden="true">
+            <label for="enq-company">Company</label>
+            <input type="text" id="enq-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="enq-submit">Send enquiry</button>
+          <span class="form-status" id="enq-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
   </section>
 
 </main>
@@ -679,10 +758,21 @@
   Night Camping on the Triund Hill &copy; Poorna293 (CC BY-SA 4.0).
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
   (function(){
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
     var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
+
+    // ---- Supabase config ----
+    // Create a project at supabase.com, then replace these two values with
+    // your Project URL and anon public key (Project Settings -> API).
+    var SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    var SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    var supabaseClient = null;
+    if (SUPABASE_URL.indexOf('YOUR_SUPABASE') === -1 && window.supabase) {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
 
     var TREKS = {
       'kedarkantha': {
@@ -846,6 +936,69 @@
     show(valid ? initial : 'home', false);
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    var enquiryForm = document.getElementById('enquiry-form');
+    var enquiryStatus = document.getElementById('enq-status');
+    var enquirySubmit = document.getElementById('enq-submit');
+
+    enquiryForm.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // Honeypot: bots fill hidden fields, humans never see them.
+      if (document.getElementById('enq-company').value) {
+        enquiryStatus.textContent = 'Thanks — we\'ll be in touch.';
+        enquiryStatus.className = 'form-status success';
+        enquiryForm.reset();
+        return;
+      }
+
+      var name = document.getElementById('enq-name').value.trim();
+      var phone = document.getElementById('enq-phone').value.trim();
+      if (!name || !phone) {
+        enquiryStatus.textContent = 'Name and phone are required.';
+        enquiryStatus.className = 'form-status error';
+        return;
+      }
+
+      if (!supabaseClient) {
+        enquiryStatus.textContent = 'Booking form isn’t connected yet — please DM @trekwith_g on Instagram instead.';
+        enquiryStatus.className = 'form-status error';
+        return;
+      }
+
+      var payload = {
+        name: name,
+        phone: phone,
+        email: document.getElementById('enq-email').value.trim() || null,
+        trek: document.getElementById('enq-trek').value || null,
+        preferred_month: document.getElementById('enq-month').value.trim() || null,
+        group_size: document.getElementById('enq-group').value ? parseInt(document.getElementById('enq-group').value, 10) : null,
+        message: document.getElementById('enq-message').value.trim() || null
+      };
+
+      enquirySubmit.disabled = true;
+      enquirySubmit.textContent = 'Sending...';
+      enquiryStatus.textContent = '';
+      enquiryStatus.className = 'form-status';
+
+      supabaseClient.from('enquiries').insert([payload]).then(function(res){
+        enquirySubmit.disabled = false;
+        enquirySubmit.textContent = 'Send enquiry';
+        if (res.error) {
+          enquiryStatus.textContent = 'Something went wrong — please DM @trekwith_g on Instagram instead.';
+          enquiryStatus.className = 'form-status error';
+        } else {
+          enquiryStatus.textContent = 'Sent! We’ll get back to you shortly.';
+          enquiryStatus.className = 'form-status success';
+          enquiryForm.reset();
+        }
+      }).catch(function(){
+        enquirySubmit.disabled = false;
+        enquirySubmit.textContent = 'Send enquiry';
+        enquiryStatus.textContent = 'Something went wrong — please DM @trekwith_g on Instagram instead.';
+        enquiryStatus.className = 'form-status error';
+      });
+    });
   })();
 </script>
 
