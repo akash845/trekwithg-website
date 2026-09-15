@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import LightboxGallery from '@/components/Lightbox';
 import { getTrek, TREK_SLUGS } from '@/lib/treks';
 
 export function generateStaticParams() {
@@ -46,11 +47,12 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
         ))}
       </div>
       <p style={{ fontSize: '1.05rem', maxWidth: '68ch', marginTop: 24 }}>{trek.desc}</p>
-      <div className="td-gallery">
-        {extraImages.map((src) => (
-          <Image key={src} src={`/${src}`} alt={`${trek.title} — trail photo`} width={280} height={210} />
-        ))}
-      </div>
+      <LightboxGallery
+        className="td-gallery"
+        imgWidth={280}
+        imgHeight={210}
+        images={extraImages.map((src) => ({ src, alt: `${trek.title} — trail photo` }))}
+      />
 
       <div className="section-head" style={{ marginTop: 52 }}>
         <div>

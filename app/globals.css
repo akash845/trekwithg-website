@@ -278,6 +278,33 @@ main{position:relative; z-index:1;}
 }
 .gallery-note{margin-top:16px;}
 
+/* ---------- Lightbox ---------- */
+.lightbox-trigger{
+  display:block; width:100%; padding:0; margin:0; border:none; background:none; cursor:zoom-in; text-align:left;
+}
+.lightbox-trigger img{ width:100%; }
+.lightbox-overlay{
+  position:fixed; inset:0; background:rgba(11,21,18,.92); z-index:1000;
+  display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.lightbox-content{ max-width:min(92vw,1000px); max-height:88vh; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.lightbox-content img{ max-width:100%; max-height:80vh; object-fit:contain; border-radius:6px; }
+.lightbox-caption{ color:#EDF1EA; font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.05em; }
+.lightbox-close{
+  position:absolute; top:18px; right:22px; background:none; border:none; color:#EDF1EA; font-size:2rem;
+  line-height:1; cursor:pointer; padding:4px 10px;
+}
+.lightbox-nav{
+  position:absolute; top:50%; transform:translateY(-50%); background:none; border:none; color:#EDF1EA;
+  font-size:2rem; line-height:1; cursor:pointer; padding:8px 14px;
+}
+.lightbox-prev{ left:8px; }
+.lightbox-next{ right:8px; }
+@media (max-width:560px){
+  .lightbox-close{ top:10px; right:12px; }
+  .lightbox-nav{ font-size:1.5rem; padding:6px 10px; }
+}
+
 /* ---------- Contact ---------- */
 .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:32px;}
 @media (max-width:760px){ .contact-grid{grid-template-columns:1fr;} }

@@ -48,7 +48,7 @@ export default function ContactPage() {
             </li>
             <li>
               <span className="k">Partner</span>
-              <span className="v">Netra Adventures — joint high-altitude expeditions</span>
+              <span className="v">Moksha Adventures — joint high-altitude expeditions</span>
             </li>
           </ul>
         </div>

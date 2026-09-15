@@ -29,7 +29,7 @@ export default function AboutPage() {
           </p>
           <p>
             TrekwithG also runs joint expeditions with regional partners — including{' '}
-            <strong>Netra Adventures</strong> on select high-altitude routes — to bring in local crew
+            <strong>Moksha Adventures</strong> on select high-altitude routes — to bring in local crew
             who know a valley&apos;s weather better than any forecast.
           </p>
         </div>

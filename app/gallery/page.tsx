@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import LightboxGallery from '@/components/Lightbox';
 
 export const metadata: Metadata = {
   title: 'Gallery',
@@ -38,6 +38,71 @@ const GALLERY_ITEMS = [
     alt: 'Night camping on Triund hill',
     caption: 'Basecamp · night camp',
   },
+  {
+    src: 'images/kedarkantha-harkidun.jpg',
+    alt: 'Har Ki Dun valley view on the Kedarkantha region trail',
+    caption: 'Kedarkantha · Har Ki Dun valley',
+  },
+  {
+    src: 'images/kedarkantha-supin-valley.jpg',
+    alt: 'Supin river valley near the Kedarkantha trek',
+    caption: 'Kedarkantha · Supin valley',
+  },
+  {
+    src: 'images/brahmatal-nandaghunti-view.jpg',
+    alt: 'View of Nanda Ghunti peak from the Brahmatal ridge',
+    caption: 'Brahmatal · Nanda Ghunti view',
+  },
+  {
+    src: 'images/brahmatal-trekker-view.jpg',
+    alt: 'Trekker overlooking snow-covered peaks on the Brahmatal trek',
+    caption: 'Brahmatal · ridge walk',
+  },
+  {
+    src: 'images/hampta-pass.jpg',
+    alt: 'Hampta Pass trail between Kullu and Lahaul valleys',
+    caption: 'Hampta Pass · crossing the pass',
+  },
+  {
+    src: 'images/hampta-chandratal.jpg',
+    alt: 'Chandratal lake near the Hampta Pass trek',
+    caption: 'Hampta Pass · Chandratal lake',
+  },
+  {
+    src: 'images/chadar-trek-01.jpg',
+    alt: 'Trekkers walking on the frozen Zanskar river',
+    caption: 'Chadar · walking the ice',
+  },
+  {
+    src: 'images/chadar-trek-14.jpg',
+    alt: 'Gorge walls along the Chadar trek route',
+    caption: 'Chadar · the gorge',
+  },
+  {
+    src: 'images/valley-of-flowers.jpg',
+    alt: 'Valley of Flowers National Park in full bloom',
+    caption: 'Valley of Flowers · the valley',
+  },
+  {
+    src: 'images/vof-hemkund-sahib.jpg',
+    alt: 'Hemkund Sahib lake near the Valley of Flowers trek',
+    caption: 'Valley of Flowers · Hemkund Sahib',
+  },
+  {
+    src: 'images/ladakh-basecamp.jpg',
+    alt: 'Basecamp tents in the Ladakh mountains',
+    caption: 'Ladakh · basecamp',
+  },
+  {
+    src: 'images/ladakh-tsokar-salt.jpg',
+    alt: 'Salt flats at Tso Kar lake, Ladakh',
+    caption: 'Ladakh · Tso Kar salt flats',
+  },
+  {
+    src: 'images/ladakh-tsokar-reflections.jpg',
+    alt: 'Mountain reflections on Tso Kar lake, Ladakh',
+    caption: 'Ladakh · Tso Kar reflections',
+  },
 ];
 
 export default function GalleryPage() {
@@ -49,14 +114,13 @@ export default function GalleryPage() {
           <h2>Gallery</h2>
         </div>
       </div>
-      <div className="gallery-grid">
-        {GALLERY_ITEMS.map((item) => (
-          <figure className="gcell" key={item.src}>
-            <Image src={`/${item.src}`} alt={item.alt} width={220} height={165} />
-            <figcaption>{item.caption}</figcaption>
-          </figure>
-        ))}
-      </div>
+      <LightboxGallery
+        className="gallery-grid"
+        itemClassName="gcell"
+        imgWidth={220}
+        imgHeight={165}
+        images={GALLERY_ITEMS}
+      />
       <p className="gallery-note eyebrow">
         Photos: Wikimedia Commons contributors, CC BY / CC BY-SA — see credits in the footer. Swap in
         your own trek photography anytime.

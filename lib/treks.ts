@@ -204,7 +204,7 @@ export const TREKS: Record<string, Trek> = {
   custom: {
     slug: 'custom',
     title: 'Build your own',
-    region: 'Any region · with Netra Adventures on select routes',
+    region: 'Any region · with Moksha Adventures on select routes',
     grade: 'grade-hard',
     gradeLabel: 'Custom · Expedition',
     image: 'images/ladakh-basecamp.jpg',
