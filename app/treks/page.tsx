@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import TrekCard from '@/components/TrekCard';
+import Link from 'next/link';
+import TreksFilter from '@/components/TreksFilter';
 import { getAllTreks } from '@/lib/treks';
 
 export const metadata: Metadata = {
@@ -19,14 +20,10 @@ export default function TreksPage() {
           <h2>Treks &amp; expeditions</h2>
         </div>
         <p style={{ maxWidth: '32ch', fontSize: '.85rem' }}>
-          Sample departures — exact dates confirmed by batch, two weeks out.
+          Sample departures — exact dates confirmed by batch, two weeks out. <Link href="/treks/compare">Compare all treks &rarr;</Link>
         </p>
       </div>
-      <div className="trek-grid">
-        {treks.map((trek) => (
-          <TrekCard key={trek.slug} trek={trek} />
-        ))}
-      </div>
+      <TreksFilter treks={treks} />
     </section>
   );
 }

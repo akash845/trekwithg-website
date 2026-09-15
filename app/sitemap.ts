@@ -1,0 +1,35 @@
+import type { MetadataRoute } from 'next';
+import { BLOG_SLUGS } from '@/lib/blog';
+import { TREK_SLUGS } from '@/lib/treks';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://trekwithg.com';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticRoutes = [
+    '',
+    '/about',
+    '/treks',
+    '/treks/compare',
+    '/blog',
+    '/gallery',
+    '/faq',
+    '/gear',
+    '/contact',
+    '/credits',
+  ].map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: new Date(),
+  }));
+
+  const trekRoutes = TREK_SLUGS.map((slug) => ({
+    url: `${SITE_URL}/treks/${slug}`,
+    lastModified: new Date(),
+  }));
+
+  const blogRoutes = BLOG_SLUGS.map((slug) => ({
+    url: `${SITE_URL}/blog/${slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [...staticRoutes, ...trekRoutes, ...blogRoutes];
+}

@@ -1,5 +1,15 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
+
+const INSTA_IMAGES = [
+  { src: 'images/kedarkantha-harkidun.jpg', alt: 'First light over Har Ki Dun from the Kedarkantha ridge' },
+  { src: 'images/hampta-chandratal.jpg', alt: 'Chandratal lake near the Hampta Pass crossing' },
+  { src: 'images/chadar-trek-01.jpg', alt: 'Trekkers crossing the frozen Zanskar river on Chadar' },
+  { src: 'images/valley-of-flowers-bloom.jpg', alt: 'Wildflowers in bloom at Valley of Flowers' },
+  { src: 'images/brahmatal-nandaghunti-view.jpg', alt: 'Trishul and Nanda Ghunti view from Brahmatal' },
+  { src: 'images/ladakh-tsokar-reflections.jpg', alt: 'Reflections at Tso Kar, Ladakh' },
+];
 
 export const metadata: Metadata = {
   title: 'TrekwithG · Small-batch Himalayan treks',
@@ -110,6 +120,37 @@ export default function HomePage() {
               <cite>— Akash Gangadharan, Founder</cite>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className="section">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">From the trail</div>
+            <h2>@trekwith_g on Instagram</h2>
+          </div>
+          <a
+            className="btn btn-outline"
+            href="https://www.instagram.com/trekwith_g/"
+            target="_blank"
+            rel="noopener"
+          >
+            Follow along
+          </a>
+        </div>
+        <div className="insta-grid">
+          {INSTA_IMAGES.map((img) => (
+            <a
+              className="insta-cell"
+              key={img.src}
+              href="https://www.instagram.com/trekwith_g/"
+              target="_blank"
+              rel="noopener"
+              aria-label={`${img.alt} — view on Instagram`}
+            >
+              <Image src={`/${img.src}`} alt={img.alt} width={280} height={280} />
+            </a>
+          ))}
         </div>
       </div>
     </section>

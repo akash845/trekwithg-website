@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LightboxGallery from '@/components/Lightbox';
+import PrintButton from '@/components/PrintButton';
 import RouteMap from '@/components/RouteMap';
 import { getTrek, TREK_SLUGS } from '@/lib/treks';
 
@@ -26,8 +27,28 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
 
   const extraImages = trek.images.filter((src) => src !== trek.image);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: trek.title,
+    description: trek.desc,
+    touristType: trek.gradeLabel,
+    ...(trek.durationDays
+      ? { itinerary: { '@type': 'ItemList', numberOfItems: trek.durationDays } }
+      : {}),
+    provider: {
+      '@type': 'Organization',
+      name: 'TrekwithG',
+      url: 'https://www.instagram.com/trekwith_g/',
+    },
+  };
+
   return (
     <section className="page" id="page-trek-detail">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link className="back-link" href="/treks">
         &larr; All treks
       </Link>
@@ -48,7 +69,24 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
         ))}
       </div>
       <p style={{ fontSize: '1.05rem', maxWidth: '68ch', marginTop: 24 }}>{trek.desc}</p>
+
+      {trek.batchDates && trek.batchDates.length > 0 && (
+        <div style={{ marginTop: 28 }}>
+          <div className="eyebrow">Upcoming batches</div>
+          <div className="batch-dates">
+            {trek.batchDates.map((date) => (
+              <span className="batch-date-chip" key={date}>
+                {date}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       <RouteMap trek={trek} />
+      <div className="no-print" style={{ marginTop: 20 }}>
+        <PrintButton />
+      </div>
       <LightboxGallery
         className="td-gallery"
         imgWidth={280}
@@ -76,6 +114,33 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
           </li>
         ))}
       </ol>
+
+      {(trek.included || trek.excluded) && (
+        <div style={{ marginTop: 48 }}>
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Cost breakdown</div>
+              <h2>What&apos;s included</h2>
+            </div>
+          </div>
+          <div className="inc-exc-grid">
+            {trek.included && (
+              <ul className="included">
+                {trek.included.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+            {trek.excluded && (
+              <ul className="excluded">
+                {trek.excluded.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="founder-card" style={{ marginTop: 48 }}>
         <p style={{ color: 'var(--ink)', fontSize: '1.02rem' }}>

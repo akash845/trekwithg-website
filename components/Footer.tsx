@@ -8,6 +8,7 @@ export default function Footer() {
             Instagram
           </a>{' '}
           · <a href="mailto:hello@trekwithg.com">hello@trekwithg.com</a>
+          · <a href="/gear">Gear checklist</a>
           · <a href="/credits">Photo credits</a>
         </span>
       </footer>

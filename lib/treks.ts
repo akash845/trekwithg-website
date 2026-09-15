@@ -29,7 +29,28 @@ export interface Trek {
   itineraryEyebrow?: string;
   itineraryNote?: string;
   itinerary: ItineraryStep[];
+  durationDays?: number;
+  maxAltitudeM?: number;
+  season?: string;
+  batchDates?: string[];
+  included?: string[];
+  excluded?: string[];
 }
+
+const DEFAULT_INCLUDED = [
+  'Camping & stay through the trek',
+  'All meals from Day 1 dinner to the last breakfast',
+  'Trek permits & forest fees',
+  'Experienced trek leader & support crew',
+  'First-aid kit & daily oximeter checks',
+];
+
+const DEFAULT_EXCLUDED = [
+  'Transport to/from the base village',
+  'Personal trekking gear (rentable on request)',
+  'Travel insurance',
+  'Anything outside the day-by-day itinerary',
+];
 
 export const TREKS: Record<string, Trek> = {
   kedarkantha: {
@@ -58,6 +79,12 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: 'A snow-guaranteed winter summit and the most reliable first Himalayan trek we run — forest camps, a frozen lake at Juda Ka Talab, then a ridge walk to a 360° summit.',
     note: 'Next batch forming · DM @trekwith_g',
+    durationDays: 5,
+    maxAltitudeM: 3800,
+    season: 'Dec–Apr',
+    batchDates: ['Dec 12–16, 2026', 'Jan 9–13, 2027', 'Feb 13–17, 2027'],
+    included: DEFAULT_INCLUDED,
+    excluded: DEFAULT_EXCLUDED,
     itinerary: [
       { day: 'Day 1', title: 'Sankri → Juda Ka Talab', body: 'A steady 4 km climb out of Sankri through oak and pine forest to a frozen lake campsite at roughly 3,350m.' },
       { day: 'Day 2', title: 'Juda Ka Talab → Kedarkantha Base', body: 'A short, deliberately easy 4 km day so the group acclimatizes before the summit push. Camp sits right at the treeline with the first clear view of the summit ridge.' },
@@ -92,6 +119,12 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: 'Crosses from pine-forest Kullu into the stark brown Lahaul valley in one pass — the most dramatic landscape shift of any short trek we lead. Often paired with a Chandratal add-on.',
     note: 'Next batch forming · DM @trekwith_g',
+    durationDays: 5,
+    maxAltitudeM: 4287,
+    season: 'Jun–Oct',
+    batchDates: ['Sep 25–29, 2026', 'Oct 9–13, 2026'],
+    included: DEFAULT_INCLUDED,
+    excluded: DEFAULT_EXCLUDED,
     itinerary: [
       { day: 'Day 1', title: 'Jobra → Chika', body: 'A short 3 km walk-in from the roadhead. First night camped by the Rani nallah.' },
       { day: 'Day 2', title: 'Chika → Balu Ka Ghera', body: 'A 7 km climb via Jwara into high meadows, camping right under the pass with the first big peak views.' },
@@ -126,6 +159,12 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: "A monsoon-only window when the alpine meadow floods with 600+ flowering species — Himalayan blue poppy, cobra lily, wild orchids. Slow-paced by design, this one's about the valley floor, not a summit.",
     note: 'Next batch forming · DM @trekwith_g',
+    durationDays: 6,
+    maxAltitudeM: 3658,
+    season: 'Jul–Sep',
+    batchDates: ['Jul 10–15, 2027', 'Aug 7–12, 2027'],
+    included: DEFAULT_INCLUDED,
+    excluded: DEFAULT_EXCLUDED,
     itinerary: [
       { day: 'Day 1', title: 'Govindghat/Pulna → Ghangaria', body: 'The main trekking day, roughly 9–13 km up the Pushpawati valley to the basecamp village.' },
       { day: 'Day 2', title: 'Ghangaria → Valley of Flowers → Ghangaria', body: 'A full, slow-paced day inside the national park — an 8 km round trip through the bloom.' },
@@ -161,6 +200,12 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: "You walk on the river itself. Sub-zero nights in caves, ice that cracks underfoot, temperatures down to −20°C, and a support crew that's walked this route more times than anyone should. Our most demanding departure.",
     note: 'Limited to 12 trekkers · DM @trekwith_g',
+    durationDays: 8,
+    maxAltitudeM: 3850,
+    season: 'Jan–Feb',
+    batchDates: ['Jan 15–22, 2027', 'Feb 5–12, 2027'],
+    included: [...DEFAULT_INCLUDED, 'Wilderness Institute / Leh permits', 'Standby oxygen cylinder & cave camps'],
+    excluded: DEFAULT_EXCLUDED,
     itinerary: [
       { day: 'Day 1', title: 'Arrive Leh', body: 'A full rest day at altitude before any trekking begins — non-negotiable at 3,500m.' },
       { day: 'Day 2', title: 'Leh → Chilling → Shingra Koma', body: 'Drive to the Zanskar confluence, then the first steps onto the Chadar itself.' },
@@ -198,6 +243,12 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: 'A winter ridge walk with views of Trishul and Nanda Ghunti most days — and a frozen lake camp that rarely makes it into the usual trek lists.',
     note: 'Next batch forming · DM @trekwith_g',
+    durationDays: 6,
+    maxAltitudeM: 3734,
+    season: 'Dec–Apr',
+    batchDates: ['Dec 19–24, 2026', 'Jan 16–21, 2027'],
+    included: DEFAULT_INCLUDED,
+    excluded: DEFAULT_EXCLUDED,
     itinerary: [
       { day: 'Day 1', title: 'Lohajung → Bekaltal', body: 'A gentle 5 km forest walk to a small lake camp.' },
       { day: 'Day 2', title: 'Bekaltal → Brahmatal Base', body: 'A 6 km ridge walk with the first big views of Trishul and Nanda Ghunti.' },
@@ -230,6 +281,7 @@ export const TREKS: Record<string, Trek> = {
     ],
     desc: "Corporate offsites, college groups, or a summit you've had on a list for years — we'll scope route, permits and crew for a private departure.",
     note: 'Start with a DM · @trekwith_g',
+    season: 'Any (route-dependent)',
     itineraryHeading: 'How it works',
     itineraryEyebrow: 'Custom departures',
     itineraryNote: 'No fixed dates — every custom trip starts with a call.',

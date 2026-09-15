@@ -63,7 +63,7 @@ export default function RouteMap({ trek }: { trek: Trek }) {
         <svg className="route-map-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet">
           <path d={path} className="route-map-path" fill="none" />
           {points.map((p, i) => (
-            <g key={p.label}>
+            <g key={`${p.label}-${i}`}>
               <circle cx={p.x} cy={p.y} r={i === points.length - 1 ? 7 : 5} className="route-map-pin" />
               <text
                 x={p.x + (p.x > 200 ? -14 : 14)}
