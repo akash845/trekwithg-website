@@ -20,6 +20,7 @@ export interface Trek {
   image: string;
   imageAlt: string;
   images: string[];
+  distanceKm?: string;
   cardStats: TrekStat[];
   detailStats: TrekStat[];
   desc: string;
@@ -44,6 +45,7 @@ export const TREKS: Record<string, Trek> = {
       'images/kedarkantha-harkidun.jpg',
       'images/kedarkantha-supin-valley.jpg',
     ],
+    distanceKm: '~20 km',
     cardStats: [
       { value: '3800m', label: 'Summit alt.' },
       { value: '5D / 4N', label: 'Duration' },
@@ -77,6 +79,7 @@ export const TREKS: Record<string, Trek> = {
       'images/hampta-shepherd.jpg',
       'images/hampta-chandratal.jpg',
     ],
+    distanceKm: '~26 km',
     cardStats: [
       { value: '4287m', label: 'Pass alt.' },
       { value: '5D / 4N', label: 'Duration' },
@@ -110,6 +113,7 @@ export const TREKS: Record<string, Trek> = {
       'images/valley-of-flowers-bloom.jpg',
       'images/vof-hemkund-sahib.jpg',
     ],
+    distanceKm: '~38 km',
     cardStats: [
       { value: '3658m', label: 'Valley alt.' },
       { value: '6D / 5N', label: 'Duration' },
@@ -144,6 +148,7 @@ export const TREKS: Record<string, Trek> = {
       'images/chadar-trek-01.jpg',
       'images/chadar-trek-14.jpg',
     ],
+    distanceKm: '~85 km',
     cardStats: [
       { value: '3850m', label: 'Max alt.' },
       { value: '8D / 7N', label: 'Duration' },
@@ -180,6 +185,7 @@ export const TREKS: Record<string, Trek> = {
       'images/brahmatal-nandaghunti-view.jpg',
       'images/brahmatal-trekker-view.jpg',
     ],
+    distanceKm: '~26 km',
     cardStats: [
       { value: '3734m', label: 'Summit alt.' },
       { value: '6D / 5N', label: 'Duration' },

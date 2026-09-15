@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import LightboxGallery from '@/components/Lightbox';
+import RouteMap from '@/components/RouteMap';
 import { getTrek, TREK_SLUGS } from '@/lib/treks';
 
 export function generateStaticParams() {
@@ -47,6 +48,7 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
         ))}
       </div>
       <p style={{ fontSize: '1.05rem', maxWidth: '68ch', marginTop: 24 }}>{trek.desc}</p>
+      <RouteMap trek={trek} />
       <LightboxGallery
         className="td-gallery"
         imgWidth={280}
