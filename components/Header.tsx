@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/treks', label: 'Treks' },
+  { href: '/store', label: 'Store' },
   { href: '/blog', label: 'Blog' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/faq', label: 'FAQ' },

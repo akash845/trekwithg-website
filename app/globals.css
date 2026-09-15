@@ -228,6 +228,11 @@ main{position:relative; z-index:1;}
 .trek-desc{font-size:.88rem; flex:1;}
 .trek-note{font-size:.72rem; color:var(--mist); font-family:'IBM Plex Mono',monospace; margin-top:auto;}
 
+/* ---------- Store ---------- */
+.store-price{display:flex; align-items:baseline; gap:10px;}
+.store-price b{font-size:1.05rem; color:var(--ink);}
+.store-price-strike{font-size:.82rem; color:var(--mist); text-decoration:line-through;}
+
 /* ---------- Trek detail ---------- */
 .trek-detail-hero{ position:relative; border-radius:6px; overflow:hidden; border:1px solid var(--line); isolation:isolate; }
 .trek-detail-hero img{ width:100%; height:min(48vw,380px); object-fit:cover; display:block; }
