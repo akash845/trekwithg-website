@@ -46,8 +46,8 @@ const standaloneProducts: Product[] = [
     title: 'Travelogue Poster',
     category: 'poster',
     categoryLabel: 'Travelogue Poster©',
-    image: 'images/ladakh-tsokar-reflections.jpg',
-    imageAlt: 'Ladakh road trip landscape used as a Travelogue Poster reference',
+    image: 'images/store/travelogue-poster.jpg',
+    imageAlt: 'Reference image — a framed poster hung on a living room wall',
     price: 1999,
     desc: 'One poster covering a whole trip — route map plus a curated grid of your own trip photos. Built for multi-stop trips like Ladakh or Spiti, not single treks.',
     details: [
@@ -62,8 +62,8 @@ const standaloneProducts: Product[] = [
     title: 'Scratch Map — India',
     category: 'map',
     categoryLabel: 'Scratch map',
-    image: 'images/kedarkantha-region.jpg',
-    imageAlt: 'Himalayan region used as a reference image for the India scratch map',
+    image: 'images/store/scratch-map-india.jpg',
+    imageAlt: 'Reference image — a collection of printed regional maps',
     price: 1299,
     desc: 'Scratch off every state, trek base or city you\'ve actually been to. A running record of where you\'ve gone, not where you\'re planning to.',
     details: [
@@ -77,8 +77,8 @@ const standaloneProducts: Product[] = [
     title: 'Scratch Map — World',
     category: 'map',
     categoryLabel: 'Scratch map',
-    image: 'images/ladakh-tsokar-salt.jpg',
-    imageAlt: 'Ladakh landscape used as a reference image for the world scratch map',
+    image: 'images/store/scratch-map-world.jpg',
+    imageAlt: 'Reference image — a decorative wooden world map on a wall',
     price: 1499,
     desc: 'Same idea, world scale — every country you\'ve set foot in, scratched off as you go.',
     details: [
@@ -92,8 +92,8 @@ const standaloneProducts: Product[] = [
     title: 'Trail Patch Pack',
     category: 'patch',
     categoryLabel: 'Bag patch',
-    image: 'images/triund-night-camp.jpg',
-    imageAlt: 'Backpack at a trail camp, reference image for the trail patch pack',
+    image: 'images/store/trail-patch-pack.jpg',
+    imageAlt: 'Reference image — a trekking daypack on a mountain ridge',
     price: 149,
     desc: 'Sew-on / iron-on patches for your trek bag — pick from our trek-themed slogans or a plain TrekwithG mark.',
     details: [

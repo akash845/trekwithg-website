@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   description: 'Attribution for photos sourced from Wikimedia Commons used across the TrekwithG site.',
 };
 
+const unsplashCredits = [
+  { title: 'Travelogue Poster reference (framed poster on wall)', author: 'Martin Péchy' },
+  { title: 'Scratch Map — India reference (printed regional maps)', author: 'Annie Spratt' },
+  { title: 'Scratch Map — World reference (wooden world map)', author: 'Nikhilesh Boppana' },
+  { title: 'Trail Patch Pack reference (hiking backpack)', author: 'Josiah Weiss' },
+];
+
 const credits = [
   { title: 'Har Ki Dun Valley View', author: 'Curious Eagle', license: 'CC BY-SA 2.0' },
   { title: 'Hampta Pass & Shepherd on the way to Hampta Pass', author: 'Raja Selvaraj', license: 'CC BY 2.0' },
@@ -39,6 +46,17 @@ export default function CreditsPage() {
         {credits.map((c, i) => (
           <li key={i}>
             {c.title} &copy; {c.author} ({c.license})
+          </li>
+        ))}
+      </ul>
+      <p style={{ marginTop: 32 }}>
+        Store product reference images are placeholder photos from Unsplash, used under the Unsplash
+        License (free for commercial use).
+      </p>
+      <ul style={{ lineHeight: 1.9, paddingLeft: '1.2em' }}>
+        {unsplashCredits.map((c, i) => (
+          <li key={i}>
+            {c.title} &copy; {c.author} (Unsplash License)
           </li>
         ))}
       </ul>
