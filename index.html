@@ -207,8 +207,11 @@
   .trek-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:20px;}
   .trek-card{
     background:var(--surface); border:1px solid var(--line); border-radius:6px; overflow:hidden; box-shadow:var(--shadow);
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
   }
+  .trek-card:hover{ transform:translateY(-3px); box-shadow:0 2px 4px rgba(11,21,18,.08), 0 14px 28px -12px rgba(11,21,18,.28); }
+  .trek-card:focus-visible{ outline:2px solid var(--blaze); outline-offset:2px; }
   .trek-art{height:132px; position:relative; overflow:hidden;}
   .trek-art img{width:100%; height:100%; object-fit:cover; display:block;}
   .trek-body{padding:18px 20px 20px; display:flex; flex-direction:column; gap:10px; flex:1;}
@@ -226,6 +229,37 @@
   .grade-hard{ background:color-mix(in srgb, var(--ink) 10%, transparent); color:var(--ink); }
   .trek-desc{font-size:.88rem; flex:1;}
   .trek-note{font-size:.72rem; color:var(--mist); font-family:'IBM Plex Mono',monospace; margin-top:auto;}
+
+  /* ---------- Trek detail ---------- */
+  .trek-detail-hero{ position:relative; border-radius:6px; overflow:hidden; border:1px solid var(--line); isolation:isolate; }
+  .trek-detail-hero img{ width:100%; height:min(48vw,380px); object-fit:cover; display:block; }
+  .trek-detail-hero-overlay{
+    position:absolute; left:0; right:0; bottom:0; padding:22px clamp(16px,4vw,36px) 26px;
+    background:linear-gradient(to top, rgba(11,21,18,.88), rgba(11,21,18,.35) 65%, transparent);
+  }
+  .trek-detail-hero-overlay h1{ color:#F4F6F1; font-size:clamp(1.9rem,4.6vw,3rem); margin-block:8px 6px; line-height:.98; }
+  .trek-detail-hero-overlay .trek-region{ color:#CBD6CE; font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; }
+
+  .trek-detail-stats{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:1px;
+    margin-top:20px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden;
+  }
+  .trek-detail-stats .stat{ background:var(--surface); padding:14px 16px; }
+  .trek-detail-stats .stat b{ color:var(--ink); font-size:1.3rem; }
+  .trek-detail-stats .stat span{ color:var(--mist); }
+
+  .back-link{
+    display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin-bottom:22px;
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);
+  }
+  .back-link:hover{ color:var(--blaze); }
+
+  .itinerary{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+  .itinerary li{ display:grid; grid-template-columns:104px 1fr; gap:22px; padding:20px 0; border-bottom:1px solid var(--line); }
+  .itinerary .day{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--blaze); padding-top:3px; }
+  .itinerary h3{ font-family:'Big Shoulders Display',sans-serif; text-transform:none; letter-spacing:0; font-size:1.2rem; margin-bottom:4px; }
+  .itinerary p{ font-size:.92rem; }
+  @media (max-width:560px){ .itinerary li{ grid-template-columns:1fr; gap:6px; } }
 
   /* ---------- Gallery ---------- */
   .gallery-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;}
@@ -400,7 +434,7 @@
     </div>
     <div class="trek-grid">
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="kedarkantha" tabindex="0" role="button" aria-label="View Kedarkantha itinerary">
         <div class="trek-art">
           <img src="images/kedarkantha-region.jpg" alt="Snow-covered Himalayan valley near Sankri, the Kedarkantha trailhead" loading="lazy">
         </div>
@@ -420,7 +454,7 @@
         </div>
       </article>
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="hampta-pass" tabindex="0" role="button" aria-label="View Hampta Pass itinerary">
         <div class="trek-art">
           <img src="images/hampta-pass.jpg" alt="Hampta Pass ridgeline, Himachal Pradesh" loading="lazy">
         </div>
@@ -440,7 +474,7 @@
         </div>
       </article>
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="valley-of-flowers" tabindex="0" role="button" aria-label="View Valley of Flowers itinerary">
         <div class="trek-art">
           <img src="images/valley-of-flowers.jpg" alt="Valley of Flowers National Park in full monsoon bloom" loading="lazy">
         </div>
@@ -460,7 +494,7 @@
         </div>
       </article>
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="chadar" tabindex="0" role="button" aria-label="View Chadar itinerary">
         <div class="trek-art">
           <img src="images/chadar-zanskar.jpg" alt="Trekkers on the frozen Zanskar river, Chadar trek, Ladakh" loading="lazy">
         </div>
@@ -480,7 +514,7 @@
         </div>
       </article>
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="brahmatal" tabindex="0" role="button" aria-label="View Brahmatal itinerary">
         <div class="trek-art">
           <img src="images/brahmatal-campsite.jpg" alt="Snow campsite on the Brahmatal trek, Uttarakhand" loading="lazy">
         </div>
@@ -500,7 +534,7 @@
         </div>
       </article>
 
-      <article class="trek-card">
+      <article class="trek-card" data-trek="custom" tabindex="0" role="button" aria-label="View custom expedition process">
         <div class="trek-art">
           <img src="images/ladakh-basecamp.jpg" alt="Trekking camp near Tso Kar, Ladakh" loading="lazy">
         </div>
@@ -519,6 +553,35 @@
         </div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- TREK DETAIL -->
+  <section class="page" id="page-trek-detail">
+    <button class="back-link" data-page-link="treks">&larr; All treks</button>
+    <div class="trek-detail-hero">
+      <img id="td-image" src="" alt="">
+      <div class="trek-detail-hero-overlay">
+        <span class="trek-grade" id="td-grade"></span>
+        <h1 id="td-title"></h1>
+        <div class="trek-region" id="td-region"></div>
+      </div>
+    </div>
+    <div class="trek-detail-stats" id="td-stats"></div>
+    <p id="td-desc" style="font-size:1.05rem; max-width:68ch; margin-top:24px;"></p>
+
+    <div class="section-head" style="margin-top:52px;">
+      <div>
+        <div class="eyebrow" id="td-itinerary-eyebrow">Day by day</div>
+        <h2 id="td-itinerary-heading">Itinerary</h2>
+      </div>
+      <p style="max-width:34ch; font-size:.82rem;" id="td-itinerary-note">Sample plan &mdash; exact days flex with weather, snow line and group pace.</p>
+    </div>
+    <ol class="itinerary" id="td-itinerary"></ol>
+
+    <div class="founder-card" style="margin-top:48px;">
+      <p style="color:var(--ink); font-size:1.02rem;">Ready to lock a date for <strong id="td-title2"></strong>?</p>
+      <a class="btn btn-primary" href="https://www.instagram.com/trekwith_g/" target="_blank" rel="noopener" style="margin-top:16px; align-self:flex-start;">DM @trekwith_g</a>
     </div>
   </section>
 
@@ -621,9 +684,142 @@
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
     var pages = Array.prototype.slice.call(document.querySelectorAll('.page'));
 
+    var TREKS = {
+      'kedarkantha': {
+        title: 'Kedarkantha', region: 'Uttarakhand &middot; Govind Wildlife Sanctuary',
+        grade: 'grade-easy', gradeLabel: 'Easy &ndash; Moderate',
+        image: 'images/kedarkantha-region.jpg',
+        stats: [['3800m','Summit alt.'], ['5D / 4N','Duration'], ['Dec&ndash;Apr','Season']],
+        desc: 'A snow-guaranteed winter summit and the most reliable first Himalayan trek we run &mdash; forest camps, a frozen lake at Juda Ka Talab, then a ridge walk to a 360&deg; summit.',
+        itinerary: [
+          ['Day 1', 'Sankri &rarr; Juda Ka Talab', 'A steady 4 km climb out of Sankri through oak and pine forest to a frozen lake campsite at roughly 3,350m.'],
+          ['Day 2', 'Juda Ka Talab &rarr; Kedarkantha Base', 'A short, deliberately easy 4 km day so the group acclimatizes before the summit push. Camp sits right at the treeline with the first clear view of the summit ridge.'],
+          ['Day 3', 'Base &rarr; Summit (3,800m) &rarr; Hargaon', 'Pre-dawn start for the ridge walk and 360&deg; summit, then a long ~10 km descent to a lower, warmer camp the same day.'],
+          ['Day 4', 'Hargaon &rarr; Sankri', 'Easy 6 km descent back through forest to the roadhead.'],
+          ['Day 5', 'Buffer day', 'Held in reserve for weather or pace &mdash; used for the drive back to Dehradun if the trail runs on schedule.']
+        ]
+      },
+      'hampta-pass': {
+        title: 'Hampta Pass', region: 'Himachal Pradesh &middot; Kullu&ndash;Lahaul crossing',
+        grade: 'grade-mod', gradeLabel: 'Moderate',
+        image: 'images/hampta-pass.jpg',
+        stats: [['4287m','Pass alt.'], ['5D / 4N','Duration'], ['Jun&ndash;Oct','Season']],
+        desc: 'Crosses from pine-forest Kullu into the stark brown Lahaul valley in one pass &mdash; the most dramatic landscape shift of any short trek we lead. Often paired with a Chandratal add-on.',
+        itinerary: [
+          ['Day 1', 'Jobra &rarr; Chika', 'A short 3 km walk-in from the roadhead. First night camped by the Rani nallah.'],
+          ['Day 2', 'Chika &rarr; Balu Ka Ghera', 'A 7 km climb via Jwara into high meadows, camping right under the pass with the first big peak views.'],
+          ['Day 3', 'Balu Ka Ghera &rarr; Hampta Pass (4,287m) &rarr; Shea Goru', 'The crossing day: steep to the pass, then a dramatic ~9 km drop into the stark Lahaul valley.'],
+          ['Day 4', 'Shea Goru &rarr; Chatru', 'Descend roughly 10 km to the road. Groups doing the Chandratal extension continue by vehicle to the lake for the night.'],
+          ['Day 5', 'Chatru / Chandratal &rarr; Manali', 'Return drive over Rohtang / the Atal Tunnel back to Manali.']
+        ]
+      },
+      'valley-of-flowers': {
+        title: 'Valley of Flowers', region: 'Uttarakhand &middot; UNESCO World Heritage Site',
+        grade: 'grade-easy', gradeLabel: 'Easy &ndash; Moderate',
+        image: 'images/valley-of-flowers.jpg',
+        stats: [['3658m','Valley alt.'], ['6D / 5N','Duration'], ['Jul&ndash;Sep','Season']],
+        desc: 'A monsoon-only window when the alpine meadow floods with 600+ flowering species &mdash; Himalayan blue poppy, cobra lily, wild orchids. Slow-paced by design, this one\'s about the valley floor, not a summit.',
+        itinerary: [
+          ['Day 1', 'Govindghat/Pulna &rarr; Ghangaria', 'The main trekking day, roughly 9&ndash;13 km up the Pushpawati valley to the basecamp village.'],
+          ['Day 2', 'Ghangaria &rarr; Valley of Flowers &rarr; Ghangaria', 'A full, slow-paced day inside the national park &mdash; an 8 km round trip through the bloom.'],
+          ['Day 3', 'Ghangaria &rarr; Hemkund Sahib &rarr; Ghangaria', 'A steep 12 km round trip to the glacial lake and gurudwara at 4,329m, weather permitting.'],
+          ['Day 4', 'Ghangaria &rarr; Govindghat/Pulna', 'Return descent to the roadhead.'],
+          ['Day 5', 'Buffer day', 'Held in reserve for weather at Hemkund or delayed road access.'],
+          ['Day 6', 'Departure', 'Onward drive from Govindghat / Joshimath.']
+        ]
+      },
+      'chadar': {
+        title: 'Chadar', region: 'Ladakh &middot; Frozen Zanskar river',
+        grade: 'grade-hard', gradeLabel: 'Strenuous &middot; Expedition',
+        image: 'images/chadar-zanskar.jpg',
+        stats: [['3850m','Max alt.'], ['8D / 7N','Duration'], ['Jan&ndash;Feb','Season']],
+        desc: 'You walk on the river itself. Sub-zero nights in caves, ice that cracks underfoot, temperatures down to &minus;20&deg;C, and a support crew that\'s walked this route more times than anyone should. Our most demanding departure.',
+        itinerary: [
+          ['Day 1', 'Arrive Leh', 'A full rest day at altitude before any trekking begins &mdash; non-negotiable at 3,500m.'],
+          ['Day 2', 'Leh &rarr; Chilling &rarr; Shingra Koma', 'Drive to the Zanskar confluence, then the first steps onto the Chadar itself.'],
+          ['Day 3', 'Shingra Koma &rarr; Tibb Cave', 'A full ~10 km day on the ice, camping in a natural cave used by trekkers for decades.'],
+          ['Day 4', 'Tibb Cave &rarr; Naerak', 'Deeper into the gorge, roughly 10&ndash;12 km, past the frozen Naerak waterfall.'],
+          ['Day 5', 'Naerak &mdash; turnaround point', 'Rest and acclimatize; this is as far as our standard batch goes before starting back.'],
+          ['Day 6', 'Naerak &rarr; Tibb Cave', 'Retrace the route back down the frozen river.'],
+          ['Day 7', 'Tibb Cave &rarr; Shingra Koma / Chilling', 'Back off the ice and to the roadhead.'],
+          ['Day 8', 'Drive to Leh, departure', 'Buffer built in for ice conditions; used as a rest day if the trek ran to schedule.']
+        ]
+      },
+      'brahmatal': {
+        title: 'Brahmatal', region: 'Uttarakhand &middot; Alpine lake circuit',
+        grade: 'grade-mod', gradeLabel: 'Moderate',
+        image: 'images/brahmatal-campsite.jpg',
+        stats: [['3734m','Summit alt.'], ['6D / 5N','Duration'], ['Dec&ndash;Apr','Season']],
+        desc: 'A winter ridge walk with views of Trishul and Nanda Ghunti most days &mdash; and a frozen lake camp that rarely makes it into the usual trek lists.',
+        itinerary: [
+          ['Day 1', 'Lohajung &rarr; Bekaltal', 'A gentle 5 km forest walk to a small lake camp.'],
+          ['Day 2', 'Bekaltal &rarr; Brahmatal Base', 'A 6 km ridge walk with the first big views of Trishul and Nanda Ghunti.'],
+          ['Day 3', 'Base &rarr; Brahmatal Summit (3,734m) &rarr; Daldum', 'Dawn summit push, then descend roughly 8&ndash;9 km to a lower camp the same day.'],
+          ['Day 4', 'Daldum &rarr; Lohajung', 'A 7 km descent back to the roadhead.'],
+          ['Day 5', 'Buffer day', 'Reserve for weather or an easier pace on snow.'],
+          ['Day 6', 'Departure from Lohajung', 'Onward drive to Kathgodam or Rishikesh.']
+        ]
+      },
+      'custom': {
+        title: 'Build your own', region: 'Any region &middot; with Netra Adventures on select routes',
+        grade: 'grade-hard', gradeLabel: 'Custom &middot; Expedition',
+        image: 'images/ladakh-basecamp.jpg',
+        stats: [['Flexible','Duration'], ['4+','Min. group']],
+        desc: 'Corporate offsites, college groups, or a summit you\'ve had on a list for years &mdash; we\'ll scope route, permits and crew for a private departure.',
+        itineraryHeading: 'How it works', itineraryEyebrow: 'Custom departures',
+        itineraryNote: 'No fixed dates &mdash; every custom trip starts with a call.',
+        itinerary: [
+          ['Step 1', 'Discovery call', 'Tell us group size, dates, fitness level and what you actually want out of the trip &mdash; summit, scenery, or just time off-grid.'],
+          ['Step 2', 'Route &amp; permit scoping', 'We shortlist 2&ndash;3 route options against your dates and sort forest/wildlife permits where the region needs them.'],
+          ['Step 3', 'Crew &amp; logistics', 'Guides, cooks and porters are booked, gear-on-rent sorted, and a day-by-day plan is shared before you pay anything.'],
+          ['Step 4', 'On trail', 'Same small-batch rules as our fixed departures &mdash; rest days above 3,200m, a hard turn-back call if pace slips.']
+        ]
+      }
+    };
+
+    function renderTrekDetail(slug){
+      var t = TREKS[slug];
+      if(!t) return;
+      document.getElementById('td-image').src = t.image;
+      document.getElementById('td-image').alt = t.title;
+      document.getElementById('td-grade').className = 'trek-grade ' + t.grade;
+      document.getElementById('td-grade').innerHTML = t.gradeLabel;
+      document.getElementById('td-title').textContent = t.title;
+      document.getElementById('td-title2').textContent = t.title;
+      document.getElementById('td-region').innerHTML = t.region;
+      document.getElementById('td-desc').innerHTML = t.desc;
+      document.getElementById('td-itinerary-eyebrow').textContent = t.itineraryEyebrow || 'Day by day';
+      document.getElementById('td-itinerary-heading').textContent = t.itineraryHeading || 'Itinerary';
+      document.getElementById('td-itinerary-note').innerHTML = t.itineraryNote || 'Sample plan &mdash; exact days flex with weather, snow line and group pace.';
+
+      var statsEl = document.getElementById('td-stats');
+      statsEl.innerHTML = '';
+      t.stats.forEach(function(s){
+        var d = document.createElement('div');
+        d.className = 'stat';
+        d.innerHTML = '<b class="mono">' + s[0] + '</b><span>' + s[1] + '</span>';
+        statsEl.appendChild(d);
+      });
+
+      var itinEl = document.getElementById('td-itinerary');
+      itinEl.innerHTML = '';
+      t.itinerary.forEach(function(row){
+        var li = document.createElement('li');
+        li.innerHTML = '<div class="day">' + row[0] + '</div><div><h3>' + row[1] + '</h3><p>' + row[2] + '</p></div>';
+        itinEl.appendChild(li);
+      });
+    }
+
     function show(name, push){
-      pages.forEach(function(p){ p.classList.toggle('active', p.id === 'page-' + name); });
-      tabs.forEach(function(t){ t.setAttribute('aria-selected', t.dataset.page === name ? 'true' : 'false'); });
+      var isTrek = name.indexOf('trek/') === 0;
+      var slug = isTrek ? name.slice(5) : null;
+      pages.forEach(function(p){
+        p.classList.toggle('active', isTrek ? p.id === 'page-trek-detail' : p.id === 'page-' + name);
+      });
+      tabs.forEach(function(t){
+        t.setAttribute('aria-selected', (isTrek ? t.dataset.page === 'treks' : t.dataset.page === name) ? 'true' : 'false');
+      });
+      if(isTrek){ renderTrekDetail(slug); }
       if(push !== false){ history.replaceState(null, '', '#' + name); }
       window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
     }
@@ -637,9 +833,16 @@
         show(el.dataset.pageLink);
       });
     });
+    document.querySelectorAll('.trek-card[data-trek]').forEach(function(card){
+      function open(){ show('trek/' + card.dataset.trek); }
+      card.addEventListener('click', open);
+      card.addEventListener('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); }
+      });
+    });
 
     var initial = (location.hash || '').replace('#','');
-    var valid = tabs.some(function(t){ return t.dataset.page === initial; });
+    var valid = tabs.some(function(t){ return t.dataset.page === initial; }) || initial.indexOf('trek/') === 0;
     show(valid ? initial : 'home', false);
 
     document.getElementById('year').textContent = new Date().getFullYear();
