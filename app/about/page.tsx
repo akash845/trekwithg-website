@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'TrekwithG started as one person\'s weekend habit that friends kept asking to join — now fixed departures across Uttarakhand, Himachal and Ladakh, led by founder Akash.',
+    'TrekwithG started as one person\'s weekend habit that friends kept asking to join — now fixed departures across Uttarakhand, Himachal and Ladakh, led by founder Akash Gangadharan.',
 };
 
 export default function AboutPage() {
@@ -41,7 +41,7 @@ export default function AboutPage() {
               <path d="M6 54 L24 20 L32 34 L38 24 L58 54 Z" fill="var(--ice)" />
             </svg>
             <div>
-              <div className="founder-name">Akash</div>
+              <div className="founder-name">Akash Gangadharan</div>
               <div className="founder-handle">@___akashh____</div>
             </div>
           </div>

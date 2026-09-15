@@ -107,7 +107,7 @@ header{
   padding-block:16px; gap:16px; flex-wrap:wrap;
 }
 .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
-.brand-mark{width:34px; height:34px; flex:none;}
+.brand-mark{width:30px; height:40px; flex:none; object-fit:contain;}
 .brand-name{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:1.3rem; letter-spacing:.02em; text-transform:uppercase;}
 .brand-name b{color:var(--blaze);}
 nav{display:flex; gap:4px; flex-wrap:wrap;}
@@ -354,9 +354,19 @@ footer{
 footer a{color:var(--ink-soft); text-decoration:none;}
 footer a:hover{color:var(--blaze);}
 
+@media (max-width:640px){
+  .enquiry-grid{ grid-template-columns:1fr; }
+  .contact-list li{ flex-direction:column; gap:2px; }
+  .contact-list .k{ width:auto; }
+  footer.wrap{ text-align:center; justify-content:center; }
+}
+
 @media (max-width:560px){
+  body{ padding-inline:16px; }
   .headbar{padding-block:12px;}
   nav{width:100%; overflow-x:auto; -ms-overflow-style:none; scrollbar-width:none;}
   nav::-webkit-scrollbar{display:none;}
   .hero{padding:36px 20px;}
+  .section{margin-top:48px;}
+  footer{margin-top:56px;}
 }

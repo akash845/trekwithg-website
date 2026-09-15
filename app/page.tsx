@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'TrekwithG · Small-batch Himalayan treks',
   description:
-    "TrekwithG runs small-batch Himalayan treks for people who'd rather sweat up a ridgeline than scroll past one. Founded by Akash, guided in the field, planned around actual weather windows.",
+    "TrekwithG runs small-batch Himalayan treks for people who'd rather sweat up a ridgeline than scroll past one. Founded by Akash Gangadharan, guided in the field, planned around actual weather windows.",
 };
 
 export default function HomePage() {
@@ -39,7 +39,7 @@ export default function HomePage() {
           </h1>
           <p>
             TrekwithG runs small-batch Himalayan treks for people who&apos;d rather sweat up a ridgeline
-            than scroll past one. Founded by Akash, guided in the field, planned around actual weather
+            than scroll past one. Founded by Akash Gangadharan, guided in the field, planned around actual weather
             windows — not a brochure calendar.
           </p>
           <div className="hero-cta">
@@ -107,7 +107,7 @@ export default function HomePage() {
             </p>
             <div className="pull">
               &quot;You don&apos;t need to be fit. You need to be stubborn for six days.&quot;
-              <cite>— Akash, Founder</cite>
+              <cite>— Akash Gangadharan, Founder</cite>
             </div>
           </div>
         </div>

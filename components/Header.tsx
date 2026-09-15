@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -23,11 +24,14 @@ export default function Header() {
     <header>
       <div className="headbar">
         <Link className="brand" href="/">
-          <svg className="brand-mark" viewBox="0 0 34 34" fill="none" aria-hidden="true">
-            <path d="M2 27 L12 9 L17 18 L21 11 L32 27 Z" fill="var(--blaze)" />
-            <path d="M2 27 L12 9 L17 18 L14 23 L9 27 Z" fill="var(--ink)" opacity=".85" />
-            <circle cx="12" cy="9" r="1.6" fill="var(--paper)" />
-          </svg>
+          <Image
+            className="brand-mark"
+            src="/images/logo-mark.png"
+            alt=""
+            width={162}
+            height={216}
+            priority
+          />
           <div className="brand-name">
             Trek<b>with</b>G
           </div>

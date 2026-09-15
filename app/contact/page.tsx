@@ -37,7 +37,7 @@ export default function ContactPage() {
                 <a href="https://www.instagram.com/___akashh____/" target="_blank" rel="noopener">
                   @___akashh____
                 </a>{' '}
-                — Akash
+                — Akash Gangadharan
               </span>
             </li>
             <li>
