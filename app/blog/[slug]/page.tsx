@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getBlogPost, BLOG_SLUGS } from '@/lib/blog';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export function generateStaticParams() {
   return BLOG_SLUGS.map((slug) => ({ slug }));
@@ -36,7 +37,15 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         &larr; All posts
       </Link>
       <div className="trek-detail-hero">
-        <Image src={`/${post.image}`} alt={post.imageAlt} width={1120} height={380} priority />
+        <Image
+          src={`/${post.image}`}
+          alt={post.imageAlt}
+          width={1120}
+          height={380}
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
         <div className="trek-detail-hero-overlay">
           <div className="blog-tags">
             {post.tags.map((tag) => (

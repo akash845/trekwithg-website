@@ -1,0 +1,2 @@
+export const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMicgaGVpZ2h0PScyMCc+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzIwJyBmaWxsPScjZGZlNWRhJy8+PHJlY3Qgd2lkdGg9JzMyJyBoZWlnaHQ9JzIwJyBmaWxsPScjYzlkMmMyJyBvcGFjaXR5PScwLjUnLz48L3N2Zz4=';

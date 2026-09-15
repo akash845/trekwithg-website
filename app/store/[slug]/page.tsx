@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProduct, getAllProducts, PRODUCT_SLUGS } from '@/lib/products';
 import { getTrek } from '@/lib/treks';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export function generateStaticParams() {
   return PRODUCT_SLUGS.map((slug) => ({ slug }));
@@ -49,7 +50,16 @@ export default function ProductDetailPage({ params }: { params: { slug: string }
         &larr; All store items
       </Link>
       <div className="trek-detail-hero">
-        <Image src={`/${product.image}`} alt={product.imageAlt} width={1120} height={380} priority />
+        <Image
+          src={`/${product.image}`}
+          alt={product.imageAlt}
+          width={1120}
+          height={380}
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
+        <span className="placeholder-badge">Reference photo — not the final product</span>
         <div className="trek-detail-hero-overlay">
           <span className="trek-grade grade-easy">{product.categoryLabel}</span>
           <h1>{product.title}</h1>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { Trek } from '@/lib/treks';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 const X_POSITIONS = [0.78, 0.3, 0.64, 0.2, 0.82, 0.4, 0.7];
 
@@ -35,7 +36,15 @@ export default function RouteMap({ trek }: { trek: Trek }) {
 
   return (
     <div className="route-map">
-      <Image className="route-map-bg" src={`/${trek.image}`} alt="" width={800} height={1000} />
+      <Image
+        className="route-map-bg"
+        src={`/${trek.image}`}
+        alt=""
+        width={800}
+        height={1000}
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
+      />
       <div className="route-map-scrim" />
       <div className="route-map-content">
         <div className="route-map-stats">

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export interface LightboxImage {
   src: string;
@@ -102,7 +103,14 @@ export default function LightboxGallery({
             onClick={() => setActiveIndex(i)}
             aria-label={`View ${img.alt} full size`}
           >
-            <Image src={`/${img.src}`} alt={img.alt} width={imgWidth} height={imgHeight} />
+            <Image
+              src={`/${img.src}`}
+              alt={img.alt}
+              width={imgWidth}
+              height={imgHeight}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
+            />
             {img.caption && <figcaption>{img.caption}</figcaption>}
           </button>
         ))}

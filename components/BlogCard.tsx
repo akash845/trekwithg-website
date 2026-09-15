@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { BlogPost } from '@/lib/blog';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-IN', {
@@ -14,7 +15,14 @@ export default function BlogCard({ post }: { post: BlogPost }) {
   return (
     <Link className="blog-card" href={`/blog/${post.slug}`} aria-label={`Read ${post.title}`}>
       <div className="blog-art">
-        <Image src={`/${post.image}`} alt={post.imageAlt} width={560} height={132} />
+        <Image
+          src={`/${post.image}`}
+          alt={post.imageAlt}
+          width={560}
+          height={132}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
       </div>
       <div className="blog-body">
         <div className="blog-tags">

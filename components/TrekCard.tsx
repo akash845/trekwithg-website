@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Trek } from '@/lib/treks';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export default function TrekCard({ trek }: { trek: Trek }) {
   return (
@@ -10,7 +11,14 @@ export default function TrekCard({ trek }: { trek: Trek }) {
       aria-label={`View ${trek.title} itinerary`}
     >
       <div className="trek-art">
-        <Image src={`/${trek.image}`} alt={trek.imageAlt} width={560} height={132} />
+        <Image
+          src={`/${trek.image}`}
+          alt={trek.imageAlt}
+          width={560}
+          height={132}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
       </div>
       <div className="trek-body">
         <span className={`trek-grade ${trek.grade}`}>{trek.gradeLabel}</span>

@@ -6,6 +6,7 @@ import LightboxGallery from '@/components/Lightbox';
 import PrintButton from '@/components/PrintButton';
 import RouteMap from '@/components/RouteMap';
 import { getTrek, TREK_SLUGS } from '@/lib/treks';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export function generateStaticParams() {
   return TREK_SLUGS.map((slug) => ({ slug }));
@@ -53,7 +54,15 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
         &larr; All treks
       </Link>
       <div className="trek-detail-hero">
-        <Image src={`/${trek.image}`} alt={trek.title} width={1120} height={380} priority />
+        <Image
+          src={`/${trek.image}`}
+          alt={trek.title}
+          width={1120}
+          height={380}
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
         <div className="trek-detail-hero-overlay">
           <span className={`trek-grade ${trek.grade}`}>{trek.gradeLabel}</span>
           <h1>{trek.title}</h1>

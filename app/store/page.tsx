@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getAllProducts } from '@/lib/products';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export const metadata: Metadata = {
   title: 'Store',
@@ -28,7 +29,15 @@ export default function StorePage() {
         {products.map((product) => (
           <Link className="trek-card" href={`/store/${product.slug}`} key={product.slug}>
             <div className="trek-art">
-              <Image src={`/${product.image}`} alt={product.imageAlt} width={280} height={132} />
+              <Image
+                src={`/${product.image}`}
+                alt={product.imageAlt}
+                width={280}
+                height={132}
+                placeholder="blur"
+                blurDataURL={BLUR_DATA_URL}
+              />
+              <span className="placeholder-badge">Reference photo</span>
             </div>
             <div className="trek-body">
               <span className="trek-grade grade-easy">{product.categoryLabel}</span>
