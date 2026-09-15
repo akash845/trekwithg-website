@@ -248,6 +248,13 @@
   .trek-detail-stats .stat b{ color:var(--ink); font-size:1.3rem; }
   .trek-detail-stats .stat span{ color:var(--mist); }
 
+  .td-gallery{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-top:24px;
+  }
+  .td-gallery img{
+    width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border-radius:6px; border:1px solid var(--line);
+  }
+
   .back-link{
     display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; margin-bottom:22px;
     font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft);
@@ -594,6 +601,7 @@
     </div>
     <div class="trek-detail-stats" id="td-stats"></div>
     <p id="td-desc" style="font-size:1.05rem; max-width:68ch; margin-top:24px;"></p>
+    <div class="td-gallery" id="td-gallery"></div>
 
     <div class="section-head" style="margin-top:52px;">
       <div>
@@ -755,7 +763,13 @@
   Narrowest part of Frozen Zanskar river &copy; Sumita Roy Dutta (CC BY-SA 4.0) &middot;
   Bharmatal trek camp site &copy; Himani611 (CC BY-SA 4.0) &middot;
   Camp at Pongungu near Tso Kar &copy; McKay Savage (CC BY 2.0) &middot;
-  Night Camping on the Triund Hill &copy; Poorna293 (CC BY-SA 4.0).
+  Night Camping on the Triund Hill &copy; Poorna293 (CC BY-SA 4.0) &middot;
+  Entering Har Ki Dun &amp; Supin River Valley &copy; Omkar / Govind Shirude (CC BY-SA 4.0) &middot;
+  Chandratal Lake &copy; Sukhjiwan Singh (CC BY-SA 4.0) &middot;
+  Reflection of Nanda Devi Hills on Hemkund Sahib Lake &copy; Naresh Chandra (CC BY-SA 4.0) &middot;
+  Chadar trek 01 &amp; 14 &copy; Drashokk (CC BY-SA 4.0) &middot;
+  Mesmerised &amp; Interval &copy; Tapas Biswas (CC BY-SA 4.0) &middot;
+  Tso Kar reflections &amp; Salty Tso Kar &copy; McKay Savage (CC BY 2.0).
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -779,6 +793,7 @@
         title: 'Kedarkantha', region: 'Uttarakhand &middot; Govind Wildlife Sanctuary',
         grade: 'grade-easy', gradeLabel: 'Easy &ndash; Moderate',
         image: 'images/kedarkantha-region.jpg',
+        images: ['images/kedarkantha-region.jpg', 'images/kedarkantha-harkidun.jpg', 'images/kedarkantha-supin-valley.jpg'],
         stats: [['3800m','Summit alt.'], ['5D / 4N','Duration'], ['Dec&ndash;Apr','Season']],
         desc: 'A snow-guaranteed winter summit and the most reliable first Himalayan trek we run &mdash; forest camps, a frozen lake at Juda Ka Talab, then a ridge walk to a 360&deg; summit.',
         itinerary: [
@@ -793,6 +808,7 @@
         title: 'Hampta Pass', region: 'Himachal Pradesh &middot; Kullu&ndash;Lahaul crossing',
         grade: 'grade-mod', gradeLabel: 'Moderate',
         image: 'images/hampta-pass.jpg',
+        images: ['images/hampta-pass.jpg', 'images/hampta-shepherd.jpg', 'images/hampta-chandratal.jpg'],
         stats: [['4287m','Pass alt.'], ['5D / 4N','Duration'], ['Jun&ndash;Oct','Season']],
         desc: 'Crosses from pine-forest Kullu into the stark brown Lahaul valley in one pass &mdash; the most dramatic landscape shift of any short trek we lead. Often paired with a Chandratal add-on.',
         itinerary: [
@@ -807,6 +823,7 @@
         title: 'Valley of Flowers', region: 'Uttarakhand &middot; UNESCO World Heritage Site',
         grade: 'grade-easy', gradeLabel: 'Easy &ndash; Moderate',
         image: 'images/valley-of-flowers.jpg',
+        images: ['images/valley-of-flowers.jpg', 'images/valley-of-flowers-bloom.jpg', 'images/vof-hemkund-sahib.jpg'],
         stats: [['3658m','Valley alt.'], ['6D / 5N','Duration'], ['Jul&ndash;Sep','Season']],
         desc: 'A monsoon-only window when the alpine meadow floods with 600+ flowering species &mdash; Himalayan blue poppy, cobra lily, wild orchids. Slow-paced by design, this one\'s about the valley floor, not a summit.',
         itinerary: [
@@ -822,6 +839,7 @@
         title: 'Chadar', region: 'Ladakh &middot; Frozen Zanskar river',
         grade: 'grade-hard', gradeLabel: 'Strenuous &middot; Expedition',
         image: 'images/chadar-zanskar.jpg',
+        images: ['images/chadar-zanskar.jpg', 'images/chadar-trek-01.jpg', 'images/chadar-trek-14.jpg'],
         stats: [['3850m','Max alt.'], ['8D / 7N','Duration'], ['Jan&ndash;Feb','Season']],
         desc: 'You walk on the river itself. Sub-zero nights in caves, ice that cracks underfoot, temperatures down to &minus;20&deg;C, and a support crew that\'s walked this route more times than anyone should. Our most demanding departure.',
         itinerary: [
@@ -839,6 +857,7 @@
         title: 'Brahmatal', region: 'Uttarakhand &middot; Alpine lake circuit',
         grade: 'grade-mod', gradeLabel: 'Moderate',
         image: 'images/brahmatal-campsite.jpg',
+        images: ['images/brahmatal-campsite.jpg', 'images/brahmatal-nandaghunti-view.jpg', 'images/brahmatal-trekker-view.jpg'],
         stats: [['3734m','Summit alt.'], ['6D / 5N','Duration'], ['Dec&ndash;Apr','Season']],
         desc: 'A winter ridge walk with views of Trishul and Nanda Ghunti most days &mdash; and a frozen lake camp that rarely makes it into the usual trek lists.',
         itinerary: [
@@ -854,6 +873,7 @@
         title: 'Build your own', region: 'Any region &middot; with Netra Adventures on select routes',
         grade: 'grade-hard', gradeLabel: 'Custom &middot; Expedition',
         image: 'images/ladakh-basecamp.jpg',
+        images: ['images/ladakh-basecamp.jpg', 'images/ladakh-tsokar-reflections.jpg', 'images/ladakh-tsokar-salt.jpg'],
         stats: [['Flexible','Duration'], ['4+','Min. group']],
         desc: 'Corporate offsites, college groups, or a summit you\'ve had on a list for years &mdash; we\'ll scope route, permits and crew for a private departure.',
         itineraryHeading: 'How it works', itineraryEyebrow: 'Custom departures',
@@ -889,6 +909,17 @@
         d.className = 'stat';
         d.innerHTML = '<b class="mono">' + s[0] + '</b><span>' + s[1] + '</span>';
         statsEl.appendChild(d);
+      });
+
+      var galEl = document.getElementById('td-gallery');
+      galEl.innerHTML = '';
+      var extraImages = (t.images || []).filter(function(src){ return src !== t.image; });
+      extraImages.forEach(function(src){
+        var img = document.createElement('img');
+        img.src = src;
+        img.alt = t.title + ' — trail photo';
+        img.loading = 'lazy';
+        galEl.appendChild(img);
       });
 
       var itinEl = document.getElementById('td-itinerary');
