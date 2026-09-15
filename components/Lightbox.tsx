@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface LightboxImage {
   src: string;
@@ -49,6 +50,47 @@ export default function LightboxGallery({
 
   const active = activeIndex === null ? null : images[activeIndex];
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const overlay = active && (
+    <div className="lightbox-overlay" onClick={close} role="dialog" aria-modal="true">
+      <button className="lightbox-close" type="button" onClick={close} aria-label="Close">
+        &times;
+      </button>
+      {images.length > 1 && (
+        <button
+          className="lightbox-nav lightbox-prev"
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            showPrev();
+          }}
+          aria-label="Previous photo"
+        >
+          &larr;
+        </button>
+      )}
+      <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+        <img src={`/${active.src}`} alt={active.alt} />
+        {active.caption && <p className="lightbox-caption">{active.caption}</p>}
+      </div>
+      {images.length > 1 && (
+        <button
+          className="lightbox-nav lightbox-next"
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            showNext();
+          }}
+          aria-label="Next photo"
+        >
+          &rarr;
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <>
       <div className={className}>
@@ -66,43 +108,7 @@ export default function LightboxGallery({
         ))}
       </div>
 
-      {active && (
-        <div className="lightbox-overlay" onClick={close} role="dialog" aria-modal="true">
-          <button className="lightbox-close" type="button" onClick={close} aria-label="Close">
-            &times;
-          </button>
-          {images.length > 1 && (
-            <button
-              className="lightbox-nav lightbox-prev"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                showPrev();
-              }}
-              aria-label="Previous photo"
-            >
-              &larr;
-            </button>
-          )}
-          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={`/${active.src}`} alt={active.alt} />
-            {active.caption && <p className="lightbox-caption">{active.caption}</p>}
-          </div>
-          {images.length > 1 && (
-            <button
-              className="lightbox-nav lightbox-next"
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                showNext();
-              }}
-              aria-label="Next photo"
-            >
-              &rarr;
-            </button>
-          )}
-        </div>
-      )}
+      {mounted && overlay ? createPortal(overlay, document.body) : null}
     </>
   );
 }
