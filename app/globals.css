@@ -599,18 +599,6 @@ footer a:hover{color:var(--blaze);}
 .globe-panel-kicker{ font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blaze); }
 .globe-panel-title{ font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:1.1rem; line-height:1.1; }
 @media (max-width:640px){ .globe-panel{ flex-basis:100%; } }
-.globe-marker{
-  position:relative; width:26px; height:26px; border-radius:50%; background:var(--blaze); border:1px solid rgba(238,241,234,.6);
-  display:flex; align-items:center; justify-content:center; cursor:pointer; transform:translate(-50%,-50%);
-  box-shadow:0 0 0 4px rgba(217,83,27,.18); transition:transform .15s ease, background .15s ease;
-}
-.globe-marker:hover{ background:var(--blaze-dim); transform:translate(-50%,-50%) scale(1.12); }
-.globe-marker-icon{ font-size:13px; line-height:1; pointer-events:none; }
-.globe-marker-count{
-  position:absolute; top:-6px; right:-6px; min-width:16px; height:16px; padding:0 3px; border-radius:8px;
-  background:var(--ink); color:var(--paper); font-family:'IBM Plex Mono',monospace; font-size:.62rem; line-height:16px;
-  text-align:center; pointer-events:none;
-}
 
 /* ---------- Instagram strip ---------- */
 /* ---------- Highlights slideshow ---------- */
