@@ -23,7 +23,9 @@ const POSTER_DETAILS = [
   'Print-ready file — framed or unframed, your call',
 ];
 
-const framePosters: Product[] = TREK_SLUGS.filter((slug) => slug !== 'custom').map((slug) => {
+const framePosters: Product[] = TREK_SLUGS.filter(
+  (slug) => slug !== 'custom' && !TREKS[slug].image.includes('placeholder')
+).map((slug) => {
   const trek = TREKS[slug];
   return {
     slug: `frame-your-trek-${slug}`,

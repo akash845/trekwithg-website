@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-label="Photo coming soon">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B1512" />
+      <stop offset="100%" stop-color="#16221D" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#sky)" />
+  <g opacity="0.9" fill="#5C93A0">
+    <polygon points="0,500 180,260 320,400 460,220 600,500" />
+  </g>
+  <g opacity="0.9" fill="#D9531B" fill-opacity="0.85">
+    <polygon points="380,500 620,180 760,340 920,150 1200,500" />
+  </g>
+  <g opacity="0.35" fill="#EEF1EA">
+    <polygon points="620,180 660,230 580,230" />
+    <polygon points="920,150 955,200 885,200" />
+  </g>
+  <text x="50%" y="86%" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="22" letter-spacing="2" fill="#8CA096">
+    PHOTO COMING SOON
+  </text>
+</svg>
