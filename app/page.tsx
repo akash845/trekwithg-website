@@ -1,7 +1,36 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import Hero from '@/components/Hero';
+import HighlightsSlideshow, { type SlideshowItem } from '@/components/HighlightsSlideshow';
 import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
+import { getAllTreks } from '@/lib/treks';
+import { getAllAdventures } from '@/lib/adventures';
+
+const HIGHLIGHT_SLIDES: SlideshowItem[] = [
+  ...getAllTreks()
+    .filter((trek) => trek.slug !== 'custom')
+    .map((trek) => ({
+      key: `trek-${trek.slug}`,
+      href: `/treks/${trek.slug}`,
+      image: trek.image,
+      imageAlt: trek.imageAlt,
+      kicker: 'Trek',
+      title: trek.title,
+      region: trek.region,
+      desc: trek.desc,
+    })),
+  ...getAllAdventures().map((adventure) => ({
+    key: `adventure-${adventure.slug}`,
+    href: `/adventures/${adventure.slug}`,
+    image: adventure.image,
+    imageAlt: adventure.imageAlt,
+    kicker: adventure.categoryLabel,
+    title: adventure.title,
+    region: adventure.region,
+    desc: adventure.desc,
+  })),
+];
 
 const INSTA_IMAGES = [
   { src: 'images/kedarkantha-harkidun.jpg', alt: 'First light over Har Ki Dun from the Kedarkantha ridge' },
@@ -56,6 +85,19 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="section">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">All treks & activities</div>
+            <h2>Every route we run, in one loop</h2>
+          </div>
+          <Link className="btn btn-outline" href="/treks">
+            Browse all treks
+          </Link>
+        </div>
+        <HighlightsSlideshow items={HIGHLIGHT_SLIDES} />
       </div>
 
       <div className="section">

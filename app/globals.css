@@ -569,6 +569,48 @@ footer a:hover{color:var(--blaze);}
 .gear-card li::before{ content:'—'; position:absolute; left:0; color:var(--blaze); }
 
 /* ---------- Instagram strip ---------- */
+/* ---------- Highlights slideshow ---------- */
+.slideshow{ margin-top:20px; }
+.slideshow-stage{
+  position:relative; width:100%; aspect-ratio:16/9; max-height:520px;
+  border-radius:8px; overflow:hidden; border:1px solid var(--line); background:var(--surface);
+}
+@media (max-width:640px){ .slideshow-stage{ aspect-ratio:4/5; } }
+.slideshow-slide{
+  position:absolute; inset:0; display:block; opacity:0; visibility:hidden;
+  transition:opacity .6s ease; text-decoration:none;
+}
+.slideshow-slide.is-active{ opacity:1; visibility:visible; }
+.slideshow-scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(11,21,18,.9), rgba(11,21,18,.25) 55%, transparent);
+}
+.slideshow-caption{
+  position:absolute; left:0; right:0; bottom:0; padding:20px clamp(16px,4vw,36px) 26px; color:#F4F6F1;
+}
+.slideshow-kicker{ font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:#F0703B; }
+.slideshow-caption h3{
+  font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; margin-block:6px 4px;
+  font-size:clamp(1.5rem,3.4vw,2.2rem); line-height:1; color:#F4F6F1;
+}
+.slideshow-region{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:#CBD6CE; }
+.slideshow-caption p{ margin-top:10px; max-width:52ch; font-size:.9rem; color:#DDE5D9; }
+.slideshow-arrow{
+  position:absolute; top:50%; translate:0 -50%; width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(244,246,241,.4); background:rgba(11,21,18,.35); color:#F4F6F1;
+  font-size:1.4rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(2px); transition:background .15s ease;
+}
+.slideshow-arrow:hover{ background:rgba(11,21,18,.6); }
+.slideshow-arrow-prev{ left:14px; }
+.slideshow-arrow-next{ right:14px; }
+.slideshow-dots{ display:flex; gap:8px; justify-content:center; margin-top:14px; flex-wrap:wrap; }
+.slideshow-dot{
+  width:8px; height:8px; border-radius:50%; border:none; padding:0; background:var(--line); cursor:pointer;
+  transition:background .15s ease, transform .15s ease;
+}
+.slideshow-dot.is-active{ background:var(--blaze); transform:scale(1.3); }
+
 .insta-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:20px; }
 .insta-cell{ position:relative; aspect-ratio:1/1; border-radius:6px; overflow:hidden; border:1px solid var(--line); display:block; }
 .insta-cell img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .2s ease; }
