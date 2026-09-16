@@ -5,6 +5,13 @@ import { useEffect, useRef } from 'react';
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      videoRef.current?.pause();
+    }
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -27,6 +34,20 @@ export default function Hero() {
 
   return (
     <div className="hero hero-load" ref={ref}>
+      <div className="hero-video-wrap" aria-hidden="true">
+        <video
+          ref={videoRef}
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src="/videos/hero-trek.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-scrim" />
+      </div>
       <svg className="contours" viewBox="0 0 800 400" preserveAspectRatio="none" aria-hidden="true">
         <g fill="none" stroke="#EEF1EA" strokeWidth="1">
           <path d="M-20 320 Q120 260 260 300 T560 270 T860 310" opacity=".18" />
