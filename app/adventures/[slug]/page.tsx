@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAdventure, ADVENTURE_SLUGS, categoryGrade } from '@/lib/adventures';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export function generateStaticParams() {
   return ADVENTURE_SLUGS.map((slug) => ({ slug }));
@@ -43,8 +45,17 @@ export default function AdventureDetailPage({ params }: { params: { slug: string
       <Link className="back-link" href="/adventures">
         &larr; All adventure sports
       </Link>
-      <div className={`activity-detail-hero cat-${adventure.category}`}>
-        <div className="activity-detail-hero-overlay">
+      <div className="trek-detail-hero">
+        <Image
+          src={`/${adventure.image}`}
+          alt={adventure.imageAlt}
+          width={1120}
+          height={380}
+          priority
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
+        <div className="trek-detail-hero-overlay">
           <span className={`trek-grade ${categoryGrade(adventure.category)}`}>{adventure.categoryLabel}</span>
           <h1>{adventure.title}</h1>
           <div className="trek-region">{adventure.region}</div>

@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Adventure } from '@/lib/adventures';
 import { categoryGrade } from '@/lib/adventures';
+import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 
 export default function AdventureCard({ adventure }: { adventure: Adventure }) {
   return (
@@ -9,8 +11,15 @@ export default function AdventureCard({ adventure }: { adventure: Adventure }) {
       href={`/adventures/${adventure.slug}`}
       aria-label={`View ${adventure.title} details`}
     >
-      <div className={`activity-art cat-${adventure.category}`}>
-        <span>{adventure.title}</span>
+      <div className="trek-art">
+        <Image
+          src={`/${adventure.image}`}
+          alt={adventure.imageAlt}
+          width={560}
+          height={132}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+        />
       </div>
       <div className="trek-body">
         <span className={`trek-grade ${categoryGrade(adventure.category)}`}>{adventure.categoryLabel}</span>

@@ -27,6 +27,17 @@ const credits = [
   { title: 'Chadar trek 01 & 14', author: 'Drashokk', license: 'CC BY-SA 4.0' },
   { title: 'Mesmerised & Interval', author: 'Tapas Biswas', license: 'CC BY-SA 4.0' },
   { title: 'Tso Kar reflections & Salty Tso Kar', author: 'McKay Savage', license: 'CC BY 2.0' },
+  { title: 'Ocean Tribe Scuba Diving Havelock (Scuba Diving)', author: 'AshwiniShinde', license: 'CC BY-SA 4.0' },
+  { title: 'Great Barrier Reef snorkeling (Snorkeling)', author: 'Dmitry Brant', license: 'CC BY-SA 4.0' },
+  { title: 'A surfer at the wave (Surfing)', author: 'Brocken Inaglory', license: 'CC BY-SA 4.0' },
+  { title: 'Rafting in Teesta River, Kalimpong (White-Water Rafting)', author: 'Sujay25', license: 'CC BY-SA 4.0' },
+  { title: 'Kayaking in Ha Long Bay (Kayaking)', author: 'Christophe95', license: 'CC BY-SA 4.0' },
+  { title: 'Tandem Skydive (Skydiving)', author: 'Jrubenc', license: 'CC BY-SA 3.0' },
+  { title: 'Bir Billing paragliding (Paragliding)', author: 'Kartik mj', license: 'CC BY-SA 4.0' },
+  { title: 'Colossus bungee jumping (Bungee Jumping)', author: 'F Ceragioli', license: 'CC BY-SA 3.0' },
+  { title: 'Hampi bouldering (Rock Climbing & Bouldering)', author: 'ryguywy', license: 'CC BY 2.0' },
+  { title: 'Camel cart in Rann of Kutch (Desert Safari & Camping)', author: 'Vinod Panicker', license: 'CC BY-SA 2.5' },
+  { title: 'Mountain bike in downhill race (Mountain Biking)', author: 'Paul Jerry', license: 'CC BY 2.0' },
 ];
 
 export default function CreditsPage() {

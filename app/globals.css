@@ -259,31 +259,6 @@ main{position:relative; z-index:1;}
 .trek-desc{font-size:.88rem; flex:1;}
 .trek-note{font-size:.72rem; color:var(--mist); font-family:'IBM Plex Mono',monospace; margin-top:auto;}
 
-/* ---------- Adventure sports ---------- */
-.activity-art{
-  height:132px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; padding:0 18px; text-align:center;
-}
-.activity-art span{
-  font-family:'Big Shoulders Display',sans-serif; font-size:1.15rem; letter-spacing:.03em; text-transform:uppercase; color:#F4F6F1; opacity:.92;
-}
-.activity-art.cat-water{ background:linear-gradient(135deg,#173B44,#5C93A0); }
-.activity-art.cat-air{ background:linear-gradient(135deg,#2A2F22,#D9531B); }
-.activity-art.cat-land{ background:linear-gradient(135deg,#332419,#B8461A); }
-
-.activity-detail-hero{
-  position:relative; border-radius:6px; overflow:hidden; border:1px solid var(--line); isolation:isolate;
-  height:min(48vw,320px); display:flex; align-items:flex-end;
-}
-.activity-detail-hero.cat-water{ background:linear-gradient(135deg,#173B44,#5C93A0); }
-.activity-detail-hero.cat-air{ background:linear-gradient(135deg,#2A2F22,#D9531B); }
-.activity-detail-hero.cat-land{ background:linear-gradient(135deg,#332419,#B8461A); }
-.activity-detail-hero-overlay{
-  position:relative; width:100%; padding:22px clamp(16px,4vw,36px) 26px;
-  background:linear-gradient(to top, rgba(11,21,18,.55), transparent 70%);
-}
-.activity-detail-hero-overlay h1{ color:#F4F6F1; font-size:clamp(1.9rem,4.6vw,3rem); margin-block:8px 6px; line-height:.98; }
-.activity-detail-hero-overlay .trek-region{ color:#CBD6CE; font-family:'IBM Plex Mono',monospace; font-size:.78rem; letter-spacing:.06em; text-transform:uppercase; }
-
 /* ---------- Store ---------- */
 .store-price{display:flex; align-items:baseline; gap:10px;}
 .store-price b{font-size:1.05rem; color:var(--ink);}

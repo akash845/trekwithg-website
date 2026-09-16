@@ -17,6 +17,8 @@ export interface Adventure {
   category: AdventureCategory;
   categoryLabel: string;
   region: string;
+  image: string;
+  imageAlt: string;
   levelLabel: string;
   cardStats: AdventureStat[];
   detailStats: AdventureStat[];
@@ -47,6 +49,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'water',
     categoryLabel: 'Water',
     region: 'Havelock & Neil Island, Andamans · also Netrani, Karnataka',
+    image: 'images/adventures/scuba-diving.jpg',
+    imageAlt: 'Scuba diver exploring a reef off Havelock Island, Andamans',
     levelLabel: 'No experience needed for Discover Scuba',
     cardStats: [
       { value: '2 dives', label: 'Discover Scuba' },
@@ -82,6 +86,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'water',
     categoryLabel: 'Water',
     region: 'Havelock & Neil Island, Andamans · Netrani Island, Karnataka · Grande Island, Goa',
+    image: 'images/adventures/snorkeling.jpg',
+    imageAlt: 'Snorkeler swimming over a coral reef',
     levelLabel: 'No experience needed · swimming helpful, not required',
     cardStats: [
       { value: '45–60 min', label: 'In water' },
@@ -111,6 +117,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'water',
     categoryLabel: 'Water',
     region: 'Varkala & Kovalam, Kerala · Mulki, Karnataka · Puducherry',
+    image: 'images/adventures/surfing.jpg',
+    imageAlt: 'Surfer riding a wave',
     levelLabel: 'Beginner-friendly · board & instructor included',
     cardStats: [
       { value: '3D / 2N', label: 'Standard camp' },
@@ -140,6 +148,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'water',
     categoryLabel: 'Water',
     region: 'Rishikesh, Uttarakhand (Ganga) · Zanskar, Ladakh (expedition-grade)',
+    image: 'images/adventures/white-water-rafting.jpg',
+    imageAlt: 'Rafters paddling through white water rapids on an Indian river',
     levelLabel: 'Beginner-friendly on Grade II–III · fitness needed for Zanskar',
     cardStats: [
       { value: '16 km / 26 km', label: 'Standard runs' },
@@ -169,6 +179,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'water',
     categoryLabel: 'Water',
     region: 'Rishikesh (Ganga flatwater) · Gokarna & Netrani coast, Karnataka',
+    image: 'images/adventures/kayaking.jpg',
+    imageAlt: 'Kayakers paddling on calm coastal water',
     levelLabel: 'No experience needed for guided flatwater sessions',
     cardStats: [
       { value: '1.5–2 hrs', label: 'Session' },
@@ -198,6 +210,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'air',
     categoryLabel: 'Air',
     region: 'Mysore, Karnataka · Deesa, Gujarat — India\'s licensed drop zones',
+    image: 'images/adventures/skydiving.jpg',
+    imageAlt: 'Tandem skydivers in freefall',
     levelLabel: 'No experience needed · tandem with a certified jumpmaster',
     cardStats: [
       { value: '~4,000m', label: 'Exit altitude' },
@@ -228,6 +242,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'air',
     categoryLabel: 'Air',
     region: 'Bir Billing, Himachal Pradesh · Kamshet, Maharashtra',
+    image: 'images/adventures/paragliding.jpg',
+    imageAlt: 'Paraglider flying over Bir Billing, Himachal Pradesh',
     levelLabel: 'No experience needed for tandem flights',
     cardStats: [
       { value: '15–25 min', label: 'Tandem flight' },
@@ -258,6 +274,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'air',
     categoryLabel: 'Air',
     region: 'Rishikesh, Uttarakhand (India\'s highest fixed platform) · Della Adventure, Lonavala',
+    image: 'images/adventures/bungee-jumping.jpg',
+    imageAlt: 'A jumper mid-air on a fixed-platform bungee jump',
     levelLabel: 'No experience needed · basic fitness/weight limits apply',
     cardStats: [
       { value: '83m', label: 'Rishikesh drop' },
@@ -288,6 +306,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'land',
     categoryLabel: 'Land',
     region: 'Hampi, Karnataka · Badami, Karnataka',
+    image: 'images/adventures/rock-climbing.jpg',
+    imageAlt: 'Climber bouldering on the granite rock fields of Hampi',
     levelLabel: 'Beginner-friendly top-rope routes; boulder problems up to advanced',
     cardStats: [
       { value: '2D / 1N', label: 'Standard trip' },
@@ -316,6 +336,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'land',
     categoryLabel: 'Land',
     region: 'Rann of Kutch, Gujarat · Jaisalmer, Rajasthan',
+    image: 'images/adventures/desert-safari.jpg',
+    imageAlt: 'Camel cart crossing the salt desert at the Rann of Kutch',
     levelLabel: 'No experience needed · all fitness levels',
     cardStats: [
       { value: '2D / 1N', label: 'Standard trip' },
@@ -344,6 +366,8 @@ export const ADVENTURES: Record<string, Adventure> = {
     category: 'land',
     categoryLabel: 'Land',
     region: 'Manali–Leh Highway, Himachal–Ladakh · Spiti Valley',
+    image: 'images/adventures/mountain-biking.jpg',
+    imageAlt: 'Mountain biker riding a trail',
     levelLabel: 'Intermediate fitness required · prior riding experience recommended',
     cardStats: [
       { value: '7D / 6N', label: 'Manali–Leh' },
