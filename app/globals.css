@@ -569,7 +569,28 @@ footer a:hover{color:var(--blaze);}
 .gear-card li::before{ content:'—'; position:absolute; left:0; color:var(--blaze); }
 
 /* ---------- Trek globe ---------- */
-.globe-wrap{ position:relative; margin-top:20px; display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
+.globe-controls{
+  margin-top:20px; display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+}
+.globe-filter-group{ display:flex; flex-wrap:wrap; gap:8px; }
+.globe-pill{
+  font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  padding:7px 14px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft);
+  cursor:pointer; transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+.globe-pill:hover{ border-color:var(--blaze); color:var(--ink); }
+.globe-pill.is-active{ border-color:var(--blaze); background:var(--blaze); color:#fff; }
+.globe-legend{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; font-size:.78rem; color:var(--ink-soft); }
+.globe-legend-item{ display:flex; align-items:center; gap:6px; }
+.globe-legend-dot{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+.globe-legend-ring{
+  width:9px; height:9px; border-radius:50%; display:inline-block; border:1.5px solid var(--ice); background:transparent;
+}
+.globe-legend-note{ color:var(--mist); }
+.globe-tooltip{
+  font-family:'IBM Plex Mono',monospace; font-size:.75rem; line-height:1.4; padding:6px 4px;
+}
+.globe-wrap{ position:relative; margin-top:14px; display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; }
 .globe-stage{
   flex:1 1 420px; min-width:280px; border-radius:8px; overflow:hidden;
   border:1px solid var(--line); background:var(--spruce-950); display:flex; align-items:center; justify-content:center;
@@ -598,6 +619,14 @@ footer a:hover{color:var(--blaze);}
 .globe-panel-list a:hover{ border-color:var(--blaze); background:var(--paper-dim); }
 .globe-panel-kicker{ font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--blaze); }
 .globe-panel-title{ font-family:'Big Shoulders Display',sans-serif; text-transform:uppercase; font-size:1.1rem; line-height:1.1; }
+.globe-panel-meta{
+  display:flex; flex-wrap:wrap; gap:4px 10px; font-family:'IBM Plex Mono',monospace; font-size:.7rem;
+  letter-spacing:.02em; text-transform:none; color:var(--ink-soft); margin-top:2px;
+}
+.globe-panel-grade{ font-weight:600; }
+.globe-panel-badge{
+  color:var(--ice); border:1px solid var(--ice); border-radius:999px; padding:1px 8px; font-size:.65rem;
+}
 @media (max-width:640px){ .globe-panel{ flex-basis:100%; } }
 
 /* ---------- Instagram strip ---------- */

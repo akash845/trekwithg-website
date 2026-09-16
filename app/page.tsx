@@ -7,7 +7,7 @@ import HighlightsSlideshow, { type SlideshowItem } from '@/components/Highlights
 import { type GlobePinItem } from '@/components/TrekGlobe';
 import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 import { getAllTreks } from '@/lib/treks';
-import { getAllAdventures } from '@/lib/adventures';
+import { getAllAdventures, categoryGrade } from '@/lib/adventures';
 
 const TrekGlobe = dynamic(() => import('@/components/TrekGlobe'), {
   ssr: false,
@@ -50,6 +50,12 @@ const GLOBE_PINS: GlobePinItem[] = [
       region: trek.region,
       lat: trek.lat as number,
       lng: trek.lng as number,
+      type: 'trek' as const,
+      grade: trek.grade,
+      gradeLabel: trek.gradeLabel,
+      durationDays: trek.durationDays,
+      maxAltitudeM: trek.maxAltitudeM,
+      season: trek.season,
     })),
   ...getAllAdventures()
     .filter((adventure) => adventure.lat != null && adventure.lng != null)
@@ -61,6 +67,10 @@ const GLOBE_PINS: GlobePinItem[] = [
       region: adventure.region,
       lat: adventure.lat as number,
       lng: adventure.lng as number,
+      type: 'adventure' as const,
+      grade: categoryGrade(adventure.category) as GlobePinItem['grade'],
+      gradeLabel: adventure.levelLabel,
+      season: adventure.season,
     })),
 ];
 
