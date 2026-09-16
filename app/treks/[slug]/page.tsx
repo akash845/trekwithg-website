@@ -69,6 +69,9 @@ export default function TrekDetailPage({ params }: { params: { slug: string } })
           <div className="trek-region">{trek.region}</div>
         </div>
       </div>
+      {trek.imageCredit && (
+        <div style={{ fontSize: '0.75rem', opacity: 0.6, marginTop: 6 }}>{trek.imageCredit}</div>
+      )}
       <div className="trek-detail-stats">
         {trek.detailStats.map((stat) => (
           <div className="stat" key={stat.label}>

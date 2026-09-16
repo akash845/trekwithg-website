@@ -22,6 +22,7 @@ export interface Trek {
   image: string;
   imageAlt: string;
   images: string[];
+  imageCredit?: string;
   distanceKm?: string;
   cardStats: TrekStat[];
   detailStats: TrekStat[];
@@ -352,9 +353,10 @@ export const TREKS: Record<string, Trek> = {
     lng: 79.733,
     grade: 'grade-hard',
     gradeLabel: 'Strenuous',
-    image: 'images/placeholder-trek.svg',
-    imageAlt: 'Photo coming soon — trek imagery in production',
-    images: ['images/placeholder-trek.svg'],
+    image: 'images/roopkund-lake.jpg',
+    imageAlt: 'Roopkund, the glacial "Mystery Lake" beneath the Trishul massif',
+    images: ['images/roopkund-lake.jpg'],
+    imageCredit: 'Photo: Schwiki / Wikimedia Commons (CC BY-SA 4.0) — reference image, not from a TrekwithG batch',
     distanceKm: '~53 km',
     cardStats: [
       { value: '5029m', label: 'Lake alt.' },
@@ -366,7 +368,7 @@ export const TREKS: Record<string, Trek> = {
       { value: '7D / 6N', label: 'Duration' },
       { value: 'May–Jun, Sep–Oct', label: 'Season' },
     ],
-    desc: "The 'Mystery Lake' trek — high alpine meadows at Ali and Bedni Bugyal, a punishing summit-day push past scattered centuries-old human remains, and a shot at Junargali ridge with Trishul and Nanda Ghunti filling the skyline. Photos of this route are still in production; the route and dates below are accurate.",
+    desc: "The 'Mystery Lake' trek — high alpine meadows at Ali and Bedni Bugyal, a punishing summit-day push past scattered centuries-old human remains, and a shot at Junargali ridge with Trishul and Nanda Ghunti filling the skyline. The route and dates below are accurate; the photo above is a reference image, not from a TrekwithG batch yet.",
     note: 'Route open for booking · DM @trekwith_g',
     durationDays: 7,
     maxAltitudeM: 5029,
@@ -392,9 +394,10 @@ export const TREKS: Record<string, Trek> = {
     lng: 86.8528,
     grade: 'grade-hard',
     gradeLabel: 'Strenuous · Expedition',
-    image: 'images/placeholder-trek.svg',
-    imageAlt: 'Photo coming soon — trek imagery in production',
-    images: ['images/placeholder-trek.svg'],
+    image: 'images/everest-base-camp-trail.jpg',
+    imageAlt: 'The trail sign to Everest Base Camp near Gorak Shep, Khumbu',
+    images: ['images/everest-base-camp-trail.jpg'],
+    imageCredit: 'Photo: Michelle Welsch / Wikimedia Commons (CC BY-SA 3.0) — reference image, not from a TrekwithG batch',
     distanceKm: '~130 km round trip',
     cardStats: [
       { value: '5364m', label: 'Base camp alt.' },
@@ -406,7 +409,7 @@ export const TREKS: Record<string, Trek> = {
       { value: '12D / 11N', label: 'Duration' },
       { value: 'Mar–May, Sep–Dec', label: 'Season' },
     ],
-    desc: "Our first Nepal route: the classic Khumbu teahouse trek from Lukla to the foot of the world's highest mountain, with a Kala Patthar sunrise thrown in. This route is newly added and still being scoped with a local operating partner — treat dates as provisional until confirmed. Photos are also still in production.",
+    desc: "Our first Nepal route: the classic Khumbu teahouse trek from Lukla to the foot of the world's highest mountain, with a Kala Patthar sunrise thrown in. This route is newly added and still being scoped with a local operating partner — treat dates as provisional until confirmed. The photo above is a reference image, not from a TrekwithG batch yet.",
     note: 'In scoping — DM @trekwith_g to register interest',
     durationDays: 12,
     maxAltitudeM: 5364,
@@ -441,9 +444,10 @@ export const TREKS: Record<string, Trek> = {
     lng: 83.8792,
     grade: 'grade-mod',
     gradeLabel: 'Moderate',
-    image: 'images/placeholder-trek.svg',
-    imageAlt: 'Photo coming soon — trek imagery in production',
-    images: ['images/placeholder-trek.svg'],
+    image: 'images/annapurna-base-camp-machhapuchre.jpg',
+    imageAlt: 'Annapurna Base Camp lodges beneath Machhapuchhre (Fishtail), Annapurna Sanctuary',
+    images: ['images/annapurna-base-camp-machhapuchre.jpg'],
+    imageCredit: 'Photo: Nepalkismat / Wikimedia Commons (CC BY-SA 4.0) — reference image, not from a TrekwithG batch',
     distanceKm: '~65 km round trip',
     cardStats: [
       { value: '4130m', label: 'Base camp alt.' },
@@ -455,7 +459,7 @@ export const TREKS: Record<string, Trek> = {
       { value: '7D / 6N', label: 'Duration' },
       { value: 'Mar–May, Sep–Nov', label: 'Season' },
     ],
-    desc: "A shorter, less extreme Nepal teahouse trek than EBC — through rhododendron forest and terraced villages into the Annapurna Sanctuary, a natural amphitheater ringed by 7,000m peaks. Newly added and still being scoped with a local operating partner; treat dates as provisional. Photos are also still in production.",
+    desc: "A shorter, less extreme Nepal teahouse trek than EBC — through rhododendron forest and terraced villages into the Annapurna Sanctuary, a natural amphitheater ringed by 7,000m peaks. Newly added and still being scoped with a local operating partner; treat dates as provisional. The photo above is a reference image, not from a TrekwithG batch yet.",
     note: 'In scoping — DM @trekwith_g to register interest',
     durationDays: 7,
     maxAltitudeM: 4130,
@@ -484,9 +488,10 @@ export const TREKS: Record<string, Trek> = {
     lng: 83.6996,
     grade: 'grade-easy',
     gradeLabel: 'Easy',
-    image: 'images/placeholder-trek.svg',
-    imageAlt: 'Photo coming soon — trek imagery in production',
-    images: ['images/placeholder-trek.svg'],
+    image: 'images/poon-hill-sunrise.jpg',
+    imageAlt: 'Dawn over Dhaulagiri seen from the Poon Hill viewpoint',
+    images: ['images/poon-hill-sunrise.jpg'],
+    imageCredit: 'Photo: Sajjan811 / Wikimedia Commons (CC BY-SA 4.0) — reference image, not from a TrekwithG batch',
     distanceKm: '~33 km round trip',
     cardStats: [
       { value: '3210m', label: 'Viewpoint alt.' },
@@ -498,7 +503,7 @@ export const TREKS: Record<string, Trek> = {
       { value: '4D / 3N', label: 'Duration' },
       { value: 'Sep–May', label: 'Season' },
     ],
-    desc: "Our easiest Nepal route and a good first international trek — short teahouse days through Gurung villages to a sunrise viewpoint over Dhaulagiri and the Annapurna range. Newly added and still being scoped with a local operating partner; treat dates as provisional. Photos are also still in production.",
+    desc: "Our easiest Nepal route and a good first international trek — short teahouse days through Gurung villages to a sunrise viewpoint over Dhaulagiri and the Annapurna range. Newly added and still being scoped with a local operating partner; treat dates as provisional. The photo above is a reference image, not from a TrekwithG batch yet.",
     note: 'In scoping — DM @trekwith_g to register interest',
     durationDays: 4,
     maxAltitudeM: 3210,

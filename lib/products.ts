@@ -24,7 +24,7 @@ const POSTER_DETAILS = [
 ];
 
 const framePosters: Product[] = TREK_SLUGS.filter(
-  (slug) => slug !== 'custom' && !TREKS[slug].image.includes('placeholder')
+  (slug) => slug !== 'custom' && !TREKS[slug].image.includes('placeholder') && !TREKS[slug].imageCredit
 ).map((slug) => {
   const trek = TREKS[slug];
   return {
