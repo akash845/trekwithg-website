@@ -1,11 +1,18 @@
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import Hero from '@/components/Hero';
 import HighlightsSlideshow, { type SlideshowItem } from '@/components/HighlightsSlideshow';
+import { type GlobePinItem } from '@/components/TrekGlobe';
 import { BLUR_DATA_URL } from '@/lib/blurPlaceholder';
 import { getAllTreks } from '@/lib/treks';
 import { getAllAdventures } from '@/lib/adventures';
+
+const TrekGlobe = dynamic(() => import('@/components/TrekGlobe'), {
+  ssr: false,
+  loading: () => <div className="globe-loading">Loading map…</div>,
+});
 
 const HIGHLIGHT_SLIDES: SlideshowItem[] = [
   ...getAllTreks()
@@ -30,6 +37,31 @@ const HIGHLIGHT_SLIDES: SlideshowItem[] = [
     region: adventure.region,
     desc: adventure.desc,
   })),
+];
+
+const GLOBE_PINS: GlobePinItem[] = [
+  ...getAllTreks()
+    .filter((trek) => trek.slug !== 'custom' && trek.lat != null && trek.lng != null)
+    .map((trek) => ({
+      id: `trek-${trek.slug}`,
+      href: `/treks/${trek.slug}`,
+      title: trek.title,
+      kicker: 'Trek',
+      region: trek.region,
+      lat: trek.lat as number,
+      lng: trek.lng as number,
+    })),
+  ...getAllAdventures()
+    .filter((adventure) => adventure.lat != null && adventure.lng != null)
+    .map((adventure) => ({
+      id: `adventure-${adventure.slug}`,
+      href: `/adventures/${adventure.slug}`,
+      title: adventure.title,
+      kicker: adventure.categoryLabel,
+      region: adventure.region,
+      lat: adventure.lat as number,
+      lng: adventure.lng as number,
+    })),
 ];
 
 const INSTA_IMAGES = [
@@ -85,6 +117,16 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="section">
+        <div className="section-head">
+          <div>
+            <div className="eyebrow">Explore the map</div>
+            <h2>Every trek and activity, on the globe</h2>
+          </div>
+        </div>
+        <TrekGlobe pins={GLOBE_PINS} />
       </div>
 
       <div className="section">

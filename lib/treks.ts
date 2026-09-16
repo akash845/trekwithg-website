@@ -15,6 +15,8 @@ export interface Trek {
   slug: string;
   title: string;
   region: string;
+  lat?: number;
+  lng?: number;
   grade: TrekGrade;
   gradeLabel: string;
   image: string;
@@ -57,6 +59,8 @@ export const TREKS: Record<string, Trek> = {
     slug: 'kedarkantha',
     title: 'Kedarkantha',
     region: 'Uttarakhand · Govind Wildlife Sanctuary',
+    lat: 31.05,
+    lng: 78.25,
     grade: 'grade-easy',
     gradeLabel: 'Easy – Moderate',
     image: 'images/kedarkantha-region.jpg',
@@ -97,6 +101,8 @@ export const TREKS: Record<string, Trek> = {
     slug: 'hampta-pass',
     title: 'Hampta Pass',
     region: 'Himachal Pradesh · Kullu–Lahaul crossing',
+    lat: 32.24,
+    lng: 77.28,
     grade: 'grade-mod',
     gradeLabel: 'Moderate',
     image: 'images/hampta-pass.jpg',
@@ -137,6 +143,8 @@ export const TREKS: Record<string, Trek> = {
     slug: 'valley-of-flowers',
     title: 'Valley of Flowers',
     region: 'Uttarakhand · UNESCO World Heritage Site',
+    lat: 30.729,
+    lng: 79.605,
     grade: 'grade-easy',
     gradeLabel: 'Easy – Moderate',
     image: 'images/valley-of-flowers.jpg',
@@ -178,6 +186,8 @@ export const TREKS: Record<string, Trek> = {
     slug: 'chadar',
     title: 'Chadar',
     region: 'Ladakh · Frozen Zanskar river',
+    lat: 34.05,
+    lng: 77.35,
     grade: 'grade-hard',
     gradeLabel: 'Strenuous · Expedition',
     image: 'images/chadar-zanskar.jpg',
@@ -221,6 +231,8 @@ export const TREKS: Record<string, Trek> = {
     slug: 'brahmatal',
     title: 'Brahmatal',
     region: 'Uttarakhand · Alpine lake circuit',
+    lat: 30.28,
+    lng: 79.75,
     grade: 'grade-mod',
     gradeLabel: 'Moderate',
     image: 'images/brahmatal-campsite.jpg',
