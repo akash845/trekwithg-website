@@ -50,6 +50,7 @@ const GLOBE_PINS: GlobePinItem[] = [
       region: trek.region,
       lat: trek.lat as number,
       lng: trek.lng as number,
+      kind: 'trek' as const,
     })),
   ...getAllAdventures()
     .filter((adventure) => adventure.lat != null && adventure.lng != null)
@@ -61,6 +62,7 @@ const GLOBE_PINS: GlobePinItem[] = [
       region: adventure.region,
       lat: adventure.lat as number,
       lng: adventure.lng as number,
+      kind: adventure.category,
     })),
 ];
 
