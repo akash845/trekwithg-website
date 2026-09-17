@@ -29,6 +29,7 @@ interface GlobeCluster {
 }
 
 const CLUSTER_DEGREES = 1.5;
+const DEFAULT_VIEW = { lat: 22, lng: 80, altitude: 2.1 };
 
 const GRADE_COLOR: Record<GlobeGrade, string> = {
   'grade-easy': '#5C93A0',
@@ -46,6 +47,15 @@ const GRADE_ORDER: GlobeGrade[] = ['grade-easy', 'grade-mod', 'grade-hard'];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
+type DurationFilter = 'all' | 'weekend' | 'week' | 'expedition';
+
+const DURATION_FILTERS: { key: DurationFilter; label: string }[] = [
+  { key: 'all', label: 'Any length' },
+  { key: 'weekend', label: 'Weekend (≤3D)' },
+  { key: 'week', label: 'Week (4-9D)' },
+  { key: 'expedition', label: 'Expedition (10D+)' },
+];
+
 function dominantGrade(items: GlobePinItem[]): GlobeGrade {
   return items.reduce<GlobeGrade>((worst, item) => {
     return GRADE_ORDER.indexOf(item.grade) > GRADE_ORDER.indexOf(worst) ? item.grade : worst;
@@ -62,6 +72,14 @@ function isInSeason(season: string | undefined, monthIndex: number): boolean {
   if (startIdx === -1 || endIdx === -1) return false;
   if (startIdx <= endIdx) return monthIndex >= startIdx && monthIndex <= endIdx;
   return monthIndex >= startIdx || monthIndex <= endIdx;
+}
+
+function matchesDuration(days: number | undefined, filter: DurationFilter): boolean {
+  if (filter === 'all') return true;
+  if (days == null) return false;
+  if (filter === 'weekend') return days <= 3;
+  if (filter === 'week') return days >= 4 && days <= 9;
+  return days >= 10;
 }
 
 function clusterPins(items: GlobePinItem[]): GlobeCluster[] {
@@ -82,24 +100,37 @@ function clusterPins(items: GlobePinItem[]): GlobeCluster[] {
 }
 
 type TypeFilter = 'all' | 'trek' | 'adventure';
+type GradeFilter = 'all' | GlobeGrade;
 
 export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
   const [selected, setSelected] = useState<GlobeCluster | null>(null);
+  const [hovered, setHovered] = useState<GlobeCluster | null>(null);
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
+  const [gradeFilter, setGradeFilter] = useState<GradeFilter>('all');
+  const [durationFilter, setDurationFilter] = useState<DurationFilter>('all');
   const [seasonOnly, setSeasonOnly] = useState(false);
+  const [query, setQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const globeRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
+
+  const [deepLinkSlug] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return new URLSearchParams(window.location.search).get('trek');
+  });
 
   const currentMonth = useMemo(() => new Date().getMonth(), []);
 
   const filteredPins = useMemo(() => {
     return pins.filter((pin) => {
       if (typeFilter !== 'all' && pin.type !== typeFilter) return false;
+      if (gradeFilter !== 'all' && pin.grade !== gradeFilter) return false;
+      if (!matchesDuration(pin.durationDays, durationFilter)) return false;
       if (seasonOnly && !isInSeason(pin.season, currentMonth)) return false;
       return true;
     });
-  }, [pins, typeFilter, seasonOnly, currentMonth]);
+  }, [pins, typeFilter, gradeFilter, durationFilter, seasonOnly, currentMonth]);
 
   const clusters = useMemo(() => clusterPins(filteredPins), [filteredPins]);
 
@@ -115,6 +146,34 @@ export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
     [clusters, currentMonth]
   );
 
+  const searchResults = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return pins
+      .filter((p) => p.title.toLowerCase().includes(q) || p.region.toLowerCase().includes(q))
+      .slice(0, 6);
+  }, [pins, query]);
+
+  function clusterForPin(pin: GlobePinItem): GlobeCluster {
+    const match = clusters.find((c) => c.items.some((i) => i.id === pin.id));
+    return match ?? { lat: pin.lat, lng: pin.lng, items: [pin] };
+  }
+
+  function flyToPin(pin: GlobePinItem) {
+    setSelected(clusterForPin(pin));
+    globeRef.current?.pointOfView?.({ lat: pin.lat, lng: pin.lng, altitude: 1.4 }, 1000);
+    const controls = globeRef.current?.controls?.();
+    if (controls) controls.autoRotate = false;
+  }
+
+  function resetView() {
+    setSelected(null);
+    setHovered(null);
+    globeRef.current?.pointOfView?.(DEFAULT_VIEW, 800);
+    const controls = globeRef.current?.controls?.();
+    if (controls) controls.autoRotate = true;
+  }
+
   useLayoutEffect(() => {
     function updateSize() {
       const width = containerRef.current?.offsetWidth ?? 800;
@@ -127,6 +186,46 @@ export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
 
   return (
     <div>
+      <div className="globe-search-row">
+        <div className="globe-search">
+          <input
+            type="text"
+            className="globe-search-input"
+            placeholder="Search a trek or region…"
+            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setShowSuggestions(true);
+            }}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 120)}
+          />
+          {showSuggestions && searchResults.length > 0 && (
+            <ul className="globe-search-suggestions">
+              {searchResults.map((pin) => (
+                <li key={pin.id}>
+                  <button
+                    type="button"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
+                      flyToPin(pin);
+                      setQuery('');
+                      setShowSuggestions(false);
+                    }}
+                  >
+                    <span className="globe-search-title">{pin.title}</span>
+                    <span className="globe-search-region">{pin.region}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <button type="button" className="globe-pill globe-reset" onClick={resetView}>
+          Reset view
+        </button>
+      </div>
+
       <div className="globe-controls">
         <div className="globe-filter-group">
           {(['all', 'trek', 'adventure'] as TypeFilter[]).map((f) => (
@@ -146,6 +245,30 @@ export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
           >
             In season now
           </button>
+        </div>
+        <div className="globe-filter-group">
+          {(['all', ...GRADE_ORDER] as GradeFilter[]).map((g) => (
+            <button
+              key={g}
+              type="button"
+              className={`globe-pill${gradeFilter === g ? ' is-active' : ''}`}
+              onClick={() => setGradeFilter(g)}
+            >
+              {g === 'all' ? 'Any difficulty' : GRADE_LABEL[g]}
+            </button>
+          ))}
+        </div>
+        <div className="globe-filter-group">
+          {DURATION_FILTERS.map((d) => (
+            <button
+              key={d.key}
+              type="button"
+              className={`globe-pill${durationFilter === d.key ? ' is-active' : ''}`}
+              onClick={() => setDurationFilter(d.key)}
+            >
+              {d.label}
+            </button>
+          ))}
         </div>
         <div className="globe-legend">
           {GRADE_ORDER.map((g) => (
@@ -179,8 +302,17 @@ export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
               pointLat="lat"
               pointLng="lng"
               pointColor={(d: object) => GRADE_COLOR[dominantGrade((d as GlobeCluster).items)]}
-              pointAltitude={(d: object) => ((d as GlobeCluster) === selected ? 0.02 : 0.01)}
-              pointRadius={(d: object) => 0.35 + Math.min((d as GlobeCluster).items.length, 4) * 0.15}
+              pointAltitude={(d: object) => {
+                const c = d as GlobeCluster;
+                if (c === selected) return 0.02;
+                if (c === hovered) return 0.015;
+                return 0.01;
+              }}
+              pointRadius={(d: object) => {
+                const c = d as GlobeCluster;
+                const base = 0.35 + Math.min(c.items.length, 4) * 0.15;
+                return c === hovered ? base + 0.12 : base;
+              }}
               pointLabel={(d: object) => {
                 const c = d as GlobeCluster;
                 const first = c.items[0];
@@ -207,18 +339,31 @@ export default function TrekGlobe({ pins }: { pins: GlobePinItem[] }) {
               ringMaxRadius={2.2}
               ringPropagationSpeed={2}
               ringRepeatPeriod={1400}
+              onPointHover={(d: object | null) => setHovered(d as GlobeCluster | null)}
               onPointClick={(d: object) => {
                 setSelected(d as GlobeCluster);
                 const controls = globeRef.current?.controls?.();
                 if (controls) controls.autoRotate = false;
               }}
+              onGlobeClick={() => setSelected(null)}
               onGlobeReady={() => {
                 const controls = globeRef.current?.controls?.();
+
+                if (deepLinkSlug) {
+                  const pin = pins.find((p) => p.href.endsWith(`/${deepLinkSlug}`));
+                  if (pin) {
+                    setSelected(clusterForPin(pin));
+                    globeRef.current?.pointOfView?.({ lat: pin.lat, lng: pin.lng, altitude: 1.4 });
+                    if (controls) controls.autoRotate = false;
+                    return;
+                  }
+                }
+
                 if (controls) {
                   controls.autoRotate = true;
                   controls.autoRotateSpeed = 0.5;
                 }
-                globeRef.current?.pointOfView?.({ lat: 22, lng: 80, altitude: 2.1 });
+                globeRef.current?.pointOfView?.(DEFAULT_VIEW);
               }}
             />
           )}
