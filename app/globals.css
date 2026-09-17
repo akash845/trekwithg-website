@@ -127,7 +127,8 @@ header{
 .brand-mark{width:30px; height:40px; flex:none; object-fit:contain;}
 .brand-name{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:1.3rem; letter-spacing:.02em; text-transform:uppercase;}
 .brand-name b{color:var(--blaze);}
-nav{display:flex; gap:4px; flex-wrap:wrap;}
+.nav-desktop{display:flex; gap:4px; flex-wrap:wrap;}
+.nav-mobile{display:none;}
 .tab{
   background:none; border:1px solid transparent; border-radius:999px;
   padding:8px 16px; font-family:'IBM Plex Mono', monospace; font-size:.78rem;
@@ -139,6 +140,31 @@ nav{display:flex; gap:4px; flex-wrap:wrap;}
 .tab:hover:not([aria-selected="true"]){ border-color:var(--line); color:var(--ink); transform:translateY(-1px); }
 @media (prefers-reduced-motion: reduce){
   .tab:hover:not([aria-selected="true"]){ transform:none; }
+}
+
+.nav-toggle{
+  display:none; flex:none; width:38px; height:38px; padding:0;
+  border:1px solid var(--line); border-radius:6px; background:var(--surface);
+  flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  cursor:pointer;
+}
+.nav-toggle span{ width:18px; height:2px; background:var(--ink); border-radius:2px; transition:transform .18s ease, opacity .18s ease; }
+.nav-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+@media (max-width:760px){
+  .nav-toggle{ display:flex; }
+  .headbar{ flex-wrap:nowrap; }
+  .nav-desktop{ display:none; }
+  .nav-mobile{
+    position:absolute; top:100%; left:0; right:0; height:100vh; z-index:39;
+    flex-direction:column; flex-wrap:nowrap; gap:2px; padding:16px; overflow-y:auto;
+    background:var(--paper); border-top:1px solid var(--line);
+  }
+  .nav-mobile[data-open="true"]{ display:flex; }
+  .nav-mobile .tab{ padding:14px 16px; border-radius:6px; font-size:.85rem; text-align:left; }
+  body.nav-open{ overflow:hidden; }
 }
 
 main{position:relative; z-index:1;}
