@@ -751,3 +751,43 @@ footer a:hover{color:var(--blaze);}
   .itinerary li{ break-inside:avoid; }
   a[href]::after{ content:''; }
 }
+
+/* ---------- Founders ---------- */
+.founders-steps{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media (max-width:760px){ .founders-steps{grid-template-columns:1fr;} }
+.founders-step{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:22px; box-shadow:var(--shadow);}
+.founders-step-n{display:block; font-size:.78rem; color:var(--blaze); margin-bottom:8px;}
+.founders-step-title{font-family:'Big Shoulders Display',sans-serif; font-size:1.2rem; text-transform:uppercase; margin-bottom:8px;}
+
+.founders-why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media (max-width:760px){ .founders-why-grid{grid-template-columns:1fr;} }
+.founders-why-card{border-left:3px solid var(--blaze); padding-left:18px;}
+.founders-why-title{font-family:'Big Shoulders Display',sans-serif; font-size:1.1rem; text-transform:uppercase; color:var(--ink); margin-bottom:6px;}
+
+.founders-event-card{
+  display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+  background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:26px 28px; box-shadow:var(--shadow);
+}
+.founders-event-title{font-family:'Big Shoulders Display',sans-serif; font-size:1.4rem; text-transform:uppercase; margin-bottom:14px;}
+.founders-event-main .contact-list{max-width:44ch;}
+.founders-event-cta{flex:none;}
+
+.founders-gallery-empty{
+  border:1px dashed var(--line); border-radius:6px; padding:28px; text-align:center; color:var(--ink-soft);
+}
+.founders-gallery-empty p{max-width:52ch; margin-inline:auto;}
+
+.founders-testimonial-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+@media (max-width:760px){ .founders-testimonial-grid{grid-template-columns:1fr;} }
+.founders-testimonial-quote{color:var(--ink); font-style:italic; font-size:1rem;}
+.founders-testimonial-attr{font-size:.68rem; letter-spacing:.05em; color:var(--mist); margin-top:14px;}
+
+.founders-footer-cta{
+  border-top:1px solid var(--line); padding-top:36px; text-align:left;
+}
+
+.founders-confirm{
+  background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:24px;
+}
+.founders-confirm p{color:var(--ink); font-size:1.02rem;}
+.founders-confirm-sub{color:var(--ink-soft) !important; font-size:.9rem !important; margin-top:10px !important;}

@@ -10,6 +10,7 @@ export default function Footer() {
           · <a href="mailto:hello@trekwithg.com">hello@trekwithg.com</a>
           · <a href="/adventures">Adventures</a>
           · <a href="/store">Store</a>
+          · <a href="/founders">Founders</a>
           · <a href="/gear">Gear checklist</a>
           · <a href="/credits">Photo credits</a>
         </span>

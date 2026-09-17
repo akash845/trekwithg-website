@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/treks', label: 'Treks' },
   { href: '/adventures', label: 'Adventures' },
   { href: '/store', label: 'Store' },
+  { href: '/founders', label: 'Founders' },
   { href: '/blog', label: 'Blog' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/faq', label: 'FAQ' },
