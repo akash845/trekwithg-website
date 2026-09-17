@@ -16,7 +16,7 @@ const TrekGlobe = dynamic(() => import('@/components/TrekGlobe'), {
 
 const HIGHLIGHT_SLIDES: SlideshowItem[] = [
   ...getAllTreks()
-    .filter((trek) => trek.slug !== 'custom')
+    .filter((trek) => trek.slug !== 'custom' && !trek.provisional)
     .map((trek) => ({
       key: `trek-${trek.slug}`,
       href: `/treks/${trek.slug}`,
