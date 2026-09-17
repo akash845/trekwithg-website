@@ -31,12 +31,12 @@ const WHY_POINTS = [
     desc: 'Nobody’s presenting a deck. If business comes up, it comes up on the trail, not at a mic.',
   },
   {
-    title: 'Small batch, on purpose',
-    desc: 'Capped at ~15 people a hike, so it stays a conversation, not a crowd.',
+    title: 'Founders helping founders',
+    desc: 'Some of us have shipped, some are still figuring out what to build or how to start. That gap is the whole point — the hike is where it closes, not a place to sell.',
   },
   {
-    title: 'A ridgeline beats a banquet hall',
-    desc: 'Three hours of walking surfaces better conversations than three hours of standing around with a name tag.',
+    title: 'Small batch, on purpose',
+    desc: 'Capped at ~15 people a hike, so everyone actually gets a conversation, not just a nod.',
   },
 ];
 
@@ -151,10 +151,11 @@ export default function FoundersPage() {
         </svg>
         <div className="founders-hero-inner">
           <div className="eyebrow">TrekwithG &times; Founders</div>
-          <h2>Founders who&apos;d rather talk business on a ridgeline than in a conference room</h2>
+          <h2>Founders helping founders find their footing</h2>
           <p>
-            An invite-capped hiking meetup for startup founders in Thrissur. Small batches, real
-            terrain, no stage.
+            An invite-capped hiking meetup for startup founders in Thrissur. Some of us have a
+            clear roadmap, some are still working out how to build — the hike is where that gets
+            talked through, on a trail instead of a stage.
           </p>
           <div className="hero-cta" style={{ marginTop: 24 }}>
             <Link className="btn btn-primary" href="/founders/apply">
