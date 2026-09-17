@@ -13,20 +13,33 @@ const GRADE_OPTIONS: { value: TrekGrade | 'all'; label: string }[] = [
 
 const SEASON_OPTIONS = ['all', 'Dec–Apr', 'Jun–Oct', 'Jul–Sep', 'Jan–Feb'];
 
+function countryOf(region: string): string {
+  if (region.startsWith('Nepal')) return 'Nepal';
+  if (region.startsWith('Any region')) return 'Other';
+  return 'India';
+}
+
 export default function TreksFilter({ treks }: { treks: Trek[] }) {
   const [query, setQuery] = useState('');
   const [grade, setGrade] = useState<TrekGrade | 'all'>('all');
   const [season, setSeason] = useState('all');
+  const [country, setCountry] = useState('all');
+
+  const countryOptions = useMemo(() => {
+    const set = new Set(treks.map((trek) => countryOf(trek.region)));
+    return ['all', ...Array.from(set).sort()];
+  }, [treks]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return treks.filter((trek) => {
       if (grade !== 'all' && trek.grade !== grade) return false;
       if (season !== 'all' && trek.season !== season) return false;
+      if (country !== 'all' && countryOf(trek.region) !== country) return false;
       if (q && !`${trek.title} ${trek.region}`.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [treks, query, grade, season]);
+  }, [treks, query, grade, season, country]);
 
   return (
     <>
@@ -40,6 +53,16 @@ export default function TreksFilter({ treks }: { treks: Trek[] }) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+        </div>
+        <div className="filter-field">
+          <label htmlFor="trek-country">Country</label>
+          <select id="trek-country" value={country} onChange={(e) => setCountry(e.target.value)}>
+            {countryOptions.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt === 'all' ? 'All countries' : opt}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="filter-field">
           <label htmlFor="trek-grade">Grade</label>
